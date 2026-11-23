@@ -1,4 +1,5 @@
 import { getPayloadClient } from '@/lib/payload'
+import Link from 'next/link'
 import TeamMemberCard from '@/components/cards/TeamMemberCard'
 
 export const metadata = {
@@ -119,9 +120,9 @@ export default async function TeamPage() {
         <div className="max-w-2xl mx-auto px-6">
           <h2 className="font-playfair text-3xl font-semibold mb-4">Work With Our Experts</h2>
           <p className="text-white/70 mb-8">Senior-led engagements. Measurable outcomes. Schedule a consultation today.</p>
-          <a href="/#contact" className="inline-block bg-teal text-white px-8 py-4 rounded font-semibold hover:bg-teal/90 transition-colors">
+          <Link href="/#contact" className="inline-block bg-teal text-white px-8 py-4 rounded font-semibold hover:bg-teal/90 transition-colors">
             Schedule a Consultation
-          </a>
+          </Link>
         </div>
       </section>
     </main>

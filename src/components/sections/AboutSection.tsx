@@ -54,7 +54,7 @@ export default function AboutSection() {
             <div className="space-y-4 font-jakarta text-slate-600 leading-relaxed">
               <p>
                 Established in Lagos in 2009, Pulse Consultant Ltd was born from a vision to bridge the gap
-                between world-class financial expertise and the ambitious businesses driving Africa's
+                between world-class financial expertise and the ambitious businesses driving Africa&apos;s
                 economic transformation.
               </p>
               <p>
