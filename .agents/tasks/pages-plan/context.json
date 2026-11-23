@@ -1,0 +1,27 @@
+{
+  "project_type": "Next.js 16 App Router + TypeScript + Tailwind CSS 4 + Payload CMS 3 (PostgreSQL)",
+  "language": "TypeScript",
+  "build_system": "Next.js 16 with Turbopack; Tailwind CSS 4 (no config file, CSS-based via @import 'tailwindcss'); npm scripts",
+  "test_framework": "None — verification is npm run build (TypeScript compile + Next.js build)",
+  "build_command": "npm run build",
+  "test_command": "npm run build",
+  "verification_instructions": "Run `npm run build` from d:\\Downloads\\Pulse-Consultant. A successful exit (0) with no TypeScript errors confirms correctness. Run `npm run dev` for visual/interactive inspection.",
+  "snapshot_or_generated_files": null,
+  "environment_constraints": "Windows (PowerShell shell). Workspace root is d:\\Downloads\\Pulse-Consultant. All file paths must use this absolute root. Do NOT modify src/app/page.tsx or any file in src/components/sections/.",
+  "contribution_requirements": "No AGENTS.md found. Follow existing patterns: params: Promise<{slug}> with await, try/catch all Payload calls, never import @/payload-types in client components, use plain TS interfaces instead.",
+  "key_patterns": "1) Dynamic routes: `params: Promise<{ slug: string }>` with `const { slug } = await params` — see src/app/services/[slug]/page.tsx. 2) Payload fetch: `const payload = await getPayloadClient(); const { docs } = await payload.find({...})` — see src/lib/payload.ts. 3) Tailwind tokens: bg-navy, bg-teal, bg-offwhite, text-gold, font-playfair, font-jakarta, shadow-card-1/2/3, section-container (custom utility class in globals.css). 4) Button component at src/components/ui/Button.tsx accepts href, variant (primary/secondary/outline/ghost), size (sm/md/lg). 5) Header is fixed at h-16 (64px) so sticky elements use top-[72px] for safe clearance.",
+  "relevant_files": [
+    "src/collections/CaseStudies.ts",
+    "src/collections/Industries.ts",
+    "src/collections/Services.ts",
+    "src/lib/payload.ts",
+    "src/app/layout.tsx",
+    "src/app/globals.css",
+    "src/components/cards/CaseStudyCard.tsx",
+    "src/components/ui/Button.tsx",
+    "src/app/services/[slug]/page.tsx",
+    "src/app/case-studies/[slug]/page.tsx",
+    "src/app/industries/[slug]/page.tsx"
+  ],
+  "directory_structure": "src/app/ — Next.js App Router pages; src/collections/ — Payload CMS collection configs; src/components/cards/ — card components; src/components/layout/ — Header/Footer; src/components/sections/ — homepage section components (DO NOT MODIFY); src/components/ui/ — Button, WhatsAppButton; src/lib/payload.ts — getPayloadClient singleton; .agents/tasks/pages-plan/ — FEAT artifacts (this directory)"
+}
