@@ -2,22 +2,29 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Button from '@/components/ui/Button';
 
 const navLinks = [
-  { label: 'Home', href: '#hero' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Process', href: '#process' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home',     href: '/' },
+  { label: 'About',    href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Team',     href: '/team' },
+  { label: 'Insights', href: '/insights' },
+  { label: 'Contact',  href: '/#contact' },
 ];
+
+function isActive(pathname: string, href: string): boolean {
+  if (href === '/') return pathname === '/';
+  if (href === '/#contact') return pathname === '/';
+  return pathname.startsWith(href);
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('#hero');
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,8 +45,7 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
-  const handleNavClick = (href: string) => {
-    setActiveSection(href);
+  const handleNavClick = () => {
     setMobileOpen(false);
   };
 
@@ -55,9 +61,9 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
           <Link
-            href="#hero"
+            href="/"
             className="flex items-center gap-1"
-            onClick={() => handleNavClick('#hero')}
+            onClick={handleNavClick}
           >
             <span className="font-playfair text-white text-lg md:text-xl font-semibold tracking-tight">
               Pulse
@@ -70,24 +76,24 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => handleNavClick(link.href)}
+                onClick={handleNavClick}
                 className={`font-jakarta text-sm transition-colors duration-150 pb-0.5 ${
-                  activeSection === link.href
+                  isActive(pathname, link.href)
                     ? 'text-white border-b-2 border-gold'
                     : 'text-white/80 hover:text-white border-b-2 border-transparent'
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <Button variant="primary" size="sm" href="#contact" onClick={() => handleNavClick('#contact')}>
+            <Button variant="primary" size="sm" href="/#contact" onClick={handleNavClick}>
               Schedule Consultation
             </Button>
           </div>
@@ -126,19 +132,19 @@ export default function Header() {
       >
         <nav className="flex flex-col px-6 py-8 gap-2" aria-label="Mobile navigation">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              onClick={() => handleNavClick(link.href)}
+              onClick={handleNavClick}
               className={`font-jakarta text-base py-3 border-b border-white/10 transition-colors duration-150 ${
-                activeSection === link.href ? 'text-gold' : 'text-white/80 hover:text-white'
+                isActive(pathname, link.href) ? 'text-gold' : 'text-white/80 hover:text-white'
               }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <div className="mt-6">
-            <Button variant="primary" size="lg" href="#contact" className="w-full justify-center">
+            <Button variant="primary" size="lg" href="/#contact" className="w-full justify-center">
               Schedule Consultation
             </Button>
           </div>
