@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode, MouseEventHandler } from 'react';
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
 type ButtonSize = 'sm' | 'md' | 'lg';
@@ -23,6 +23,7 @@ interface ButtonAsLink extends BaseProps {
   download?: boolean | string;
   target?: string;
   rel?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;
@@ -56,16 +57,16 @@ export default function Button({
   const classes = `${base} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 
   if ('href' in props && props.href !== undefined) {
-    const { href, download, target, rel, ...rest } = props as ButtonAsLink;
+    const { href, download, target, rel, onClick, ...rest } = props as ButtonAsLink;
     if (download) {
       return (
-        <a href={href} download={download} target={target} rel={rel} className={classes}>
+        <a href={href} download={download} target={target} rel={rel} onClick={onClick} className={classes}>
           {children}
         </a>
       );
     }
     return (
-      <Link href={href} target={target} rel={rel} className={classes}>
+      <Link href={href} target={target} rel={rel} onClick={onClick} className={classes}>
         {children}
       </Link>
     );
