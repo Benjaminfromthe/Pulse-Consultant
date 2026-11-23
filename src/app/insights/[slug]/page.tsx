@@ -2,7 +2,9 @@ import { getPayloadClient } from '@/lib/payload'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import type { Metadata } from 'next'
 import InsightCard from '@/components/cards/InsightCard'
+import ArticleJsonLd from '@/components/seo/ArticleJsonLd'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -10,6 +12,34 @@ function renderBodyText(val: unknown): string {
   if (!val) return ''
   if (typeof val === 'string') return val
   return '[Article content available in CMS editor]'
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  try {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'insights',
+      where: { and: [{ slug: { equals: slug } }, { status: { equals: 'published' } }] },
+      limit: 1,
+    })
+    const doc = docs[0] as Record<string, unknown> | undefined
+    if (!doc) return {}
+    const seo =
+      doc.seo && typeof doc.seo === 'object' ? (doc.seo as Record<string, unknown>) : {}
+    const title = typeof doc.title === 'string' ? doc.title : ''
+    const excerpt = typeof doc.excerpt === 'string' ? doc.excerpt : ''
+    return {
+      title: typeof seo.metaTitle === 'string' && seo.metaTitle ? seo.metaTitle : title,
+      description:
+        typeof seo.metaDescription === 'string' && seo.metaDescription
+          ? seo.metaDescription
+          : excerpt,
+      alternates: { canonical: `/insights/${slug}` },
+    }
+  } catch {
+    return {}
+  }
 }
 
 export default async function InsightDetailPage({ params }: Props) {
@@ -55,6 +85,17 @@ export default async function InsightDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-offwhite">
+      <ArticleJsonLd
+        title={String(doc.title ?? '')}
+        description={String(doc.excerpt ?? '')}
+        url={`/insights/${slug}`}
+        datePublished={doc.publishedAt ? String(doc.publishedAt) : undefined}
+        authorName={
+          author != null && String(author.fullName || '').trim()
+            ? String(author.fullName)
+            : undefined
+        }
+      />
       <section className="bg-navy text-white py-20">
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           <nav className="text-sm text-white/60 mb-6 flex gap-2">

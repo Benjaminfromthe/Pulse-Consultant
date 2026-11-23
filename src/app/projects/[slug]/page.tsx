@@ -2,6 +2,7 @@ import { getPayloadClient } from '@/lib/payload'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
+import RegulatoryDisclaimer from '@/components/layout/RegulatoryDisclaimer'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -44,11 +45,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const seo = doc.seo && typeof doc.seo === 'object' ? (doc.seo as Record<string, unknown>) : {}
     const projectTitle = typeof doc.projectTitle === 'string' ? doc.projectTitle : ''
     return {
-      title:
-        typeof seo.metaTitle === 'string'
-          ? seo.metaTitle
-          : `${projectTitle} | Pulse Consultant Ltd`,
-      description: typeof seo.metaDescription === 'string' ? seo.metaDescription : '',
+      title: typeof seo.metaTitle === 'string' && seo.metaTitle ? seo.metaTitle : projectTitle,
+      description:
+        typeof seo.metaDescription === 'string' && seo.metaDescription
+          ? seo.metaDescription
+          : `How Pulse Consultant Ltd delivered measurable results on the ${projectTitle} engagement.`,
+      alternates: { canonical: `/projects/${slug}` },
     }
   } catch {
     return {}
@@ -296,6 +298,8 @@ export default async function ProjectDetailPage({ params }: Props) {
           </Button>
         </div>
       </section>
+
+      <RegulatoryDisclaimer variant="compact" />
     </main>
   )
 }

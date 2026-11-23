@@ -156,9 +156,14 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="section-container py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="font-jakarta text-white/60 text-sm">
-              &copy; 2025 Pulse Consultant Ltd. All rights reserved.
-            </p>
+            <div className="flex flex-col items-center md:items-start gap-1">
+              <p className="font-jakarta text-white/60 text-sm">
+                &copy; 2025 Pulse Consultant Ltd. All rights reserved.
+              </p>
+              <p className="font-jakarta text-white/40 text-xs">
+                Investment and fund advisory services are subject to regulatory oversight. This website is for informational purposes only and does not constitute investment advice.
+              </p>
+            </div>
             <div className="flex flex-wrap items-center gap-4 md:gap-6">
               <a href="#" className="font-jakarta text-white/60 text-sm hover:text-white transition-colors duration-150">
                 Privacy Policy

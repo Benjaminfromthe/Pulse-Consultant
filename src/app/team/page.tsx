@@ -3,8 +3,9 @@ import Link from 'next/link'
 import TeamMemberCard from '@/components/cards/TeamMemberCard'
 
 export const metadata = {
-  title: 'Our Team | Pulse Consultant Ltd',
+  title: 'Our Team',
   description: 'Meet the senior consultants and specialists at Pulse Consultant Ltd.',
+  alternates: { canonical: '/team' },
 }
 
 function extractPhotoUrl(photo: unknown): string | undefined {

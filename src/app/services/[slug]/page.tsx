@@ -1,8 +1,40 @@
 import { getPayloadClient } from '@/lib/payload'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+import ConsultingServiceJsonLd from '@/components/seo/ConsultingServiceJsonLd'
+import RegulatoryDisclaimer from '@/components/layout/RegulatoryDisclaimer'
 
 interface Props {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  try {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'services',
+      where: { slug: { equals: slug }, status: { equals: 'published' } },
+      limit: 1,
+    })
+    const doc = docs[0] as Record<string, unknown> | undefined
+    if (!doc) return {}
+    const seo =
+      doc.seo && typeof doc.seo === 'object' ? (doc.seo as Record<string, unknown>) : {}
+    const title = typeof doc.title === 'string' ? doc.title : ''
+    const shortDescription =
+      typeof doc.shortDescription === 'string' ? doc.shortDescription : ''
+    return {
+      title: typeof seo.metaTitle === 'string' && seo.metaTitle ? seo.metaTitle : title,
+      description:
+        typeof seo.metaDescription === 'string' && seo.metaDescription
+          ? seo.metaDescription
+          : shortDescription,
+      alternates: { canonical: `/services/${slug}` },
+    }
+  } catch {
+    return {}
+  }
 }
 
 export default async function ServicePage({ params }: Props) {
@@ -31,6 +63,13 @@ export default async function ServicePage({ params }: Props) {
           <p className="text-slate-600 text-lg mb-10">{service.shortDescription as string}</p>
         </div>
       </section>
+      <ConsultingServiceJsonLd
+        name={service.title as string}
+        description={service.shortDescription as string}
+        serviceType={String(service.category).replace(/-/g, ' ')}
+        url={`/services/${slug}`}
+      />
+      <RegulatoryDisclaimer />
     </main>
   )
 }

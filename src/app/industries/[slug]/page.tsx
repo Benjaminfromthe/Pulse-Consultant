@@ -1,8 +1,37 @@
 import { getPayloadClient } from '@/lib/payload'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 
 interface Props {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  try {
+    const payload = await getPayloadClient()
+    const { docs } = await payload.find({
+      collection: 'industries',
+      where: { slug: { equals: slug }, status: { equals: 'published' } },
+      limit: 1,
+    })
+    const doc = docs[0] as Record<string, unknown> | undefined
+    if (!doc) return {}
+    const seo =
+      doc.seo && typeof doc.seo === 'object' ? (doc.seo as Record<string, unknown>) : {}
+    const name = typeof doc.name === 'string' ? doc.name : ''
+    const tagline = typeof doc.tagline === 'string' ? doc.tagline : ''
+    return {
+      title: typeof seo.metaTitle === 'string' && seo.metaTitle ? seo.metaTitle : name,
+      description:
+        typeof seo.metaDescription === 'string' && seo.metaDescription
+          ? seo.metaDescription
+          : tagline || `Pulse Consultant Ltd's expertise in the ${name} sector.`,
+      alternates: { canonical: `/industries/${slug}` },
+    }
+  } catch {
+    return {}
+  }
 }
 
 export default async function IndustryPage({ params }: Props) {

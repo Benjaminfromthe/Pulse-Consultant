@@ -5,9 +5,10 @@ import CalWidget from '@/components/contact/CalWidget'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Pulse Consultant Ltd',
+  title: 'Contact Us',
   description:
     'Get in touch with Pulse Consultant Ltd. Schedule a strategy call or send an inquiry.',
+  alternates: { canonical: '/contact' },
 }
 
 export default function ContactPage() {

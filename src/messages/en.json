@@ -1,0 +1,25 @@
+{
+  "Nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "team": "Team",
+    "insights": "Insights",
+    "contact": "Contact",
+    "scheduleConsultation": "Schedule Consultation",
+    "downloadProfile": "Download Company Profile"
+  },
+  "Common": {
+    "tagline": "Strategic Insights. Financial Solutions. Sustainable Growth.",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "backToTop": "Back to top"
+  },
+  "Footer": {
+    "rights": "All rights reserved.",
+    "disclaimer": "Pulse Consultant Ltd is a registered consulting and advisory firm. All information provided is for general informational purposes only.",
+    "regulatoryDisclaimer": "Investment and fund advisory services are subject to regulatory oversight. Pulse Consultant Ltd does not provide regulated investment advice without appropriate licensing and client onboarding."
+  }
+}

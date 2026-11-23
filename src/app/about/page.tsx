@@ -3,9 +3,10 @@ import Link from 'next/link'
 import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
-  title: 'About Us | Pulse Consultant Ltd',
+  title: 'About Us',
   description:
     'Learn about Pulse Consultant Ltd — our story, vision, mission, core values, and the methodology that drives measurable results for our clients.',
+  alternates: { canonical: '/about' },
 }
 
 const stats = [

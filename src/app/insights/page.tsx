@@ -3,8 +3,9 @@ import InsightCard from '@/components/cards/InsightCard'
 import InsightsClient from './InsightsClient'
 
 export const metadata = {
-  title: 'Insights & Publications | Pulse Consultant Ltd',
+  title: 'Insights & Publications',
   description: 'Articles, market analysis, and publications from Pulse Consultant Ltd.',
+  alternates: { canonical: '/insights' },
 }
 
 function normalizeInsight(doc: Record<string, unknown>) {

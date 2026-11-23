@@ -1,0 +1,25 @@
+{
+  "Nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "projects": "Projets",
+    "team": "Équipe",
+    "insights": "Analyses",
+    "contact": "Contact",
+    "scheduleConsultation": "Planifier une consultation",
+    "downloadProfile": "Télécharger le profil de l'entreprise"
+  },
+  "Common": {
+    "tagline": "Vision Stratégique. Solutions Financières. Croissance Durable.",
+    "learnMore": "En savoir plus",
+    "readMore": "Lire la suite",
+    "viewAll": "Voir tout",
+    "backToTop": "Retour en haut"
+  },
+  "Footer": {
+    "rights": "Tous droits réservés.",
+    "disclaimer": "Pulse Consultant Ltd est une société de conseil et de conseil en stratégie enregistrée. Toutes les informations fournies sont à titre informatif général uniquement.",
+    "regulatoryDisclaimer": "Les services de conseil en investissement et en fonds sont soumis à une surveillance réglementaire. Pulse Consultant Ltd ne fournit pas de conseils en investissement réglementés sans licence appropriée et l'accueil des clients."
+  }
+}

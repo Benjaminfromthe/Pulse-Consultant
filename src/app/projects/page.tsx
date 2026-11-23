@@ -4,9 +4,10 @@ import Link from 'next/link'
 import ProjectsClient, { type CaseStudyItem, type FilterOption } from './ProjectsClient'
 
 export const metadata = {
-  title: 'Projects & Portfolio | Pulse Consultant Ltd',
+  title: 'Projects & Portfolio',
   description:
     'Explore our case studies and discover how we have helped clients achieve measurable results across industries.',
+  alternates: { canonical: '/projects' },
 }
 
 function extractPlainText(val: unknown): string {
