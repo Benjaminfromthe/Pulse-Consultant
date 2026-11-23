@@ -12,12 +12,12 @@ const navLinks = [
   { label: 'Projects', href: '/projects' },
   { label: 'Team',     href: '/team' },
   { label: 'Insights', href: '/insights' },
-  { label: 'Contact',  href: '/#contact' },
+  { label: 'Contact',  href: '/contact' },
 ];
 
 function isActive(pathname: string, href: string): boolean {
   if (href === '/') return pathname === '/';
-  if (href === '/#contact') return pathname === '/';
+  if (href === '/contact') return pathname === '/contact' || pathname.startsWith('/contact');
   return pathname.startsWith(href);
 }
 
@@ -93,7 +93,7 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <Button variant="primary" size="sm" href="/#contact" onClick={handleNavClick}>
+            <Button variant="primary" size="sm" href="/contact" onClick={handleNavClick}>
               Schedule Consultation
             </Button>
           </div>
@@ -144,7 +144,7 @@ export default function Header() {
             </Link>
           ))}
           <div className="mt-6">
-            <Button variant="primary" size="lg" href="/#contact" className="w-full justify-center">
+            <Button variant="primary" size="lg" href="/contact" className="w-full justify-center">
               Schedule Consultation
             </Button>
           </div>
