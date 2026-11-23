@@ -1,0 +1,7 @@
+{
+  "task_id": "task-pages-plan",
+  "task_description": "Build Projects & Portfolio pages (/projects, /projects/[slug]) with Payload CMS data, URL-synced filtering, and a fully static About Us page (/about) for Pulse Consultant Ltd.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
