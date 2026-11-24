@@ -1,155 +1,145 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Button from '@/components/ui/Button';
+
+const LOGO_URL =
+  'https://lh3.googleusercontent.com/aida/ALJJyrBSjpqaVEyfi_krpHNJwokl1hq7NvmyPOnwWu3iTlblIWWwsOhEp7ITUZo_fi8lBWthoahDpkPFew-hDgrgD7m-tnARXULZUTMuulaJiIds9AVUUfuhifpdspXQOjRnYHCnjT9oHDxdGpS_BLVC_kNL_fDh8j4LegNK2t-HSnuYZ98vlp3kj3Wwt7jYQnSaWVZI7W-9S_ZrKi2ay6wx8lNu7-_bOpGXUz2tU1WU_64';
 
 const navLinks = [
-  { label: 'Home',     href: '/' },
-  { label: 'About',    href: '/about' },
-  { label: 'Services', href: '/services' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Team',     href: '/team' },
-  { label: 'Insights', href: '/insights' },
-  { label: 'Contact',  href: '/contact' },
+  { label: 'Home',       href: '/' },
+  { label: 'About',      href: '/about' },
+  { label: 'Services',   href: '/services' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'Projects',   href: '/projects' },
+  { label: 'Team',       href: '/team' },
+  { label: 'Insights',   href: '/insights' },
+  { label: 'Contact',    href: '/contact' },
 ];
 
-function isActive(pathname: string, href: string): boolean {
-  if (href === '/') return pathname === '/';
-  if (href === '/contact') return pathname === '/contact' || pathname.startsWith('/contact');
-  return pathname.startsWith(href);
-}
-
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileOpen]);
-
-  const handleNavClick = () => {
-    setMobileOpen(false);
-  };
+  const closeDrawer = () => setDrawerOpen(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? 'bg-navy/95 backdrop-blur-sm shadow-card-2'
-          : 'bg-navy'
-      }`}
-    >
-      <div className="section-container">
-        <div className="flex items-center justify-between h-16 md:h-18">
+    <>
+      {/* Fixed header bar */}
+      <header className="fixed top-0 inset-x-0 z-50 bg-[#10243D]/95 backdrop-blur-xl pt-safe shadow-[0_4px_16px_rgba(16,36,61,0.18)]">
+        <div className="h-20 px-margin-mobile flex items-center justify-between gap-space-sm">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-1"
-            onClick={handleNavClick}
-          >
-            <span className="font-playfair text-white text-lg md:text-xl font-semibold tracking-tight">
-              Pulse
-            </span>
-            <span className="font-playfair text-gold text-lg md:text-xl font-semibold tracking-tight">
-              Consultant
-            </span>
-          </Link>
-
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={handleNavClick}
-                className={`font-jakarta text-sm transition-colors duration-150 pb-0.5 ${
-                  isActive(pathname, link.href)
-                    ? 'text-white border-b-2 border-gold'
-                    : 'text-white/80 hover:text-white border-b-2 border-transparent'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:flex">
-            <Button variant="primary" size="sm" href="/contact" onClick={handleNavClick}>
-              Schedule Consultation
-            </Button>
+          <div className="flex items-center gap-space-xs">
+            <img
+              alt="Pulse Consultant Ltd Logo"
+              className="h-8 w-auto object-contain"
+              src={LOGO_URL}
+            />
+            <div className="flex flex-col">
+              <span className="font-headline-sm text-headline-sm text-surface-container-lowest leading-tight tracking-tight">
+                Pulse
+              </span>
+              <span className="font-label-sm text-label-sm text-tertiary-fixed-dim uppercase tracking-wider hidden sm:inline">
+                Strategic Advisory
+              </span>
+            </div>
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Right actions */}
+          <div className="flex items-center gap-space-xs">
+            <Link
+              href="/#consultation-form"
+              className="hidden xs:inline-flex items-center justify-center px-space-sm py-space-2xs bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary transition-all min-h-[36px]"
+            >
+              Consult
+            </Link>
+            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-inner">
+              <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
+            </div>
+            <button
+              aria-label="Toggle Navigation Drawer"
+              className="w-11 h-11 flex items-center justify-center text-surface-container-lowest hover:text-tertiary-fixed-dim transition-colors"
+              onClick={() => setDrawerOpen(!drawerOpen)}
+            >
+              <span className="material-symbols-outlined text-2xl">menu</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Tagline sub-bar */}
+        <div className="bg-[#0d1d32] px-margin-mobile py-1 flex items-center justify-between">
+          <p className="font-label-sm text-label-sm text-secondary-fixed-dim truncate">
+            Strategic Insights. Financial Solutions. Sustainable Growth.
+          </p>
+          <span className="font-label-sm text-label-sm text-tertiary-fixed font-semibold tracking-wide ml-space-xs flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-tertiary-fixed animate-pulse"></span>
+            Executive Dashboard
+          </span>
+        </div>
+      </header>
+
+      {/* Mobile full-screen drawer */}
+      <div
+        className={`${drawerOpen ? 'flex' : 'hidden'} fixed inset-0 z-50 bg-[#10243D]/95 backdrop-blur-2xl flex-col pt-safe pb-safe px-margin-mobile transition-all duration-300`}
+      >
+        {/* Drawer header */}
+        <div className="h-20 flex items-center justify-between">
+          <div className="flex items-center gap-space-xs">
+            <img
+              alt="Pulse Consultant Ltd Logo"
+              className="h-8 w-auto object-contain"
+              src={LOGO_URL}
+            />
+            <span className="font-headline-sm text-headline-sm text-surface-container-lowest">
+              Pulse Advisory
+            </span>
+          </div>
           <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={mobileOpen}
+            className="w-11 h-11 flex items-center justify-center text-surface-container-lowest"
+            onClick={closeDrawer}
           >
-            <span
-              className={`block w-6 h-0.5 bg-white transition-transform duration-200 ${
-                mobileOpen ? 'rotate-45 translate-y-2' : ''
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-white transition-opacity duration-200 ${
-                mobileOpen ? 'opacity-0' : ''
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-white transition-transform duration-200 ${
-                mobileOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
-            />
+            <span className="material-symbols-outlined text-2xl">close</span>
           </button>
         </div>
-      </div>
 
-      {/* Mobile Drawer */}
-      <div
-        className={`md:hidden fixed inset-0 top-16 bg-navy z-30 transition-transform duration-300 ${
-          mobileOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <nav className="flex flex-col px-6 py-8 gap-2" aria-label="Mobile navigation">
+        {/* Nav links */}
+        <div className="flex flex-col gap-space-xs py-space-md overflow-y-auto">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              onClick={handleNavClick}
-              className={`font-jakarta text-base py-3 border-b border-white/10 transition-colors duration-150 ${
-                isActive(pathname, link.href) ? 'text-gold' : 'text-white/80 hover:text-white'
+              className={`px-space-md py-space-sm font-headline-sm text-headline-sm hover:text-tertiary-fixed-dim transition-colors ${
+                (link.href === '/' ? pathname === '/' : pathname.startsWith(link.href))
+                  ? 'text-tertiary-fixed-dim'
+                  : 'text-surface-container-lowest'
               }`}
+              onClick={closeDrawer}
             >
               {link.label}
             </Link>
           ))}
-          <div className="mt-6">
-            <Button variant="primary" size="lg" href="/contact" className="w-full justify-center">
-              Schedule Consultation
-            </Button>
-          </div>
-        </nav>
+        </div>
+
+        {/* Bottom CTAs */}
+        <div className="mt-auto pb-space-lg pt-space-md flex flex-col gap-space-sm">
+          <a
+            href="/public/pulse-consultant-company-profile.pdf"
+            className="w-full flex items-center justify-center gap-space-xs px-space-md py-space-sm bg-transparent border border-tertiary-fixed-dim text-surface-container-lowest font-label-lg text-label-lg rounded-lg hover:bg-tertiary-fixed-dim/10"
+          >
+            <span className="material-symbols-outlined text-[18px] text-tertiary-fixed-dim">download</span>
+            Download Firm Profile
+          </a>
+          <Link
+            href="/#consultation-form"
+            className="w-full flex items-center justify-center gap-space-xs px-space-md py-space-sm bg-primary-container text-on-primary font-label-lg text-label-lg rounded-lg hover:bg-primary shadow-md"
+            onClick={closeDrawer}
+          >
+            <span className="material-symbols-outlined text-[18px]">calendar_month</span>
+            Book Consultation
+          </Link>
+        </div>
       </div>
-    </header>
+    </>
   );
 }
