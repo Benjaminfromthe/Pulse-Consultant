@@ -58,15 +58,15 @@ Keep the existing Resend / Turnstile / Cal.com / WhatsApp values. Turnstile ship
 
 > **Important Node version note.** Payload `3.94.1` declares a peer requirement of Node `>=26.13.1`. On **Node 24.x**, the standalone Payload CLI (`npx payload migrate`, `npx payload generate:types`) and `npx tsx` scripts fail with `TypeError: Illegal constructor` from `undici`'s `CacheStorage` (a tsx symbol-deduplication bug). The **app itself** builds and runs fine on Node 24 — only those CLI/tsx commands are affected, because they load the config via tsx rather than Next's Turbopack runtime.
 
-### Path A (recommended) — Node 20 LTS or Node 26+
+### Path A (recommended) — Node 26 LTS
 
 Install a compatible Node, then the Payload CLI works normally:
 
 ```powershell
-# Install Node 20 LTS (one-time):
+# Install Node 26 LTS "Lithium" (one-time) — matches Payload's engines >=26.13.1:
 winget install OpenJS.NodeJS.LTS
-# (reopen your terminal after install, or use the Node 20 binary directly)
-node -v   # should print v20.x or v26.x
+# (reopen your terminal after install)
+node -v   # should print v26.x (e.g. v26.13.1)
 ```
 
 Then generate + apply the migration and seed:
@@ -107,9 +107,9 @@ npm run dev
 
 **Seeding on Node 24:** `npm run seed` (which runs `tsx src/scripts/seed.ts`) is also blocked by the same tsx/undici bug. To seed on Node 24, either:
 - temporarily run the seed through the app runtime, or
-- switch to Node 20 LTS (Path A) and run `npm run seed`.
+- switch to Node 26 LTS (Path A) and run `npm run seed`.
 
-> The cleanest, least-surprising long-term setup is **Path A (Node 20 LTS)**: migrations become committed artefacts, types generate, and `npm run seed` works. Use Path B only to unblock quickly on Node 24.
+> The cleanest, least-surprising long-term setup is **Path A (Node 26 LTS)**: migrations become committed artefacts, types generate, and `npm run seed` works. Use Path B only to unblock quickly on Node 24.
 
 ---
 

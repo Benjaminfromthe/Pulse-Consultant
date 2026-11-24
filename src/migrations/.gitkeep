@@ -3,7 +3,8 @@
 # Migrations are generated with:  npx payload migrate:create <name>
 # Migrations are applied with:    npx payload migrate   (set DATABASE_URL to DIRECT_URL: port 5432)
 #
-# NOTE: The Payload CLI (`npx payload ...`) requires Node 20 LTS or Node 26+. On Node 24.x the
-# CLI fails with an undici `CacheStorage: Illegal constructor` error (tsx symbol-dedup bug).
+# NOTE: The Payload CLI (`npx payload ...`) requires Node 26 LTS (the active LTS as of Nov 2026,
+# and the version Payload 3.94.1 declares in its engines field, >=26.13.1). On Node 24.x the CLI
+# fails with an undici `CacheStorage: Illegal constructor` error (a tsx symbol-dedup bug).
 # If you are on Node 24, bootstrap the schema instead via the PAYLOAD_DB_PUSH=true env var +
-# `next dev` (see SUPABASE-SETUP.md → "Node 24 fallback"). Then generate migrations on Node 20.
+# `next dev` (see SUPABASE-SETUP.md → "Node 24 fallback"). Then generate migrations on Node 26.
