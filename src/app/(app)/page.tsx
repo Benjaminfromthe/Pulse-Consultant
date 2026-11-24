@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const LOGO_URL =
   'https://lh3.googleusercontent.com/aida/ALJJyrBSjpqaVEyfi_krpHNJwokl1hq7NvmyPOnwWu3iTlblIWWwsOhEp7ITUZo_fi8lBWthoahDpkPFew-hDgrgD7m-tnARXULZUTMuulaJiIds9AVUUfuhifpdspXQOjRnYHCnjT9oHDxdGpS_BLVC_kNL_fDh8j4LegNK2t-HSnuYZ98vlp3kj3Wwt7jYQnSaWVZI7W-9S_ZrKi2ay6wx8lNu7-_bOpGXUz2tU1WU_64';
@@ -743,50 +744,50 @@ export default function HomePage() {
       </section>
 
       {/* ── BOTTOM NAV (Mobile fixed) ── */}
-      <nav className="fixed bottom-0 inset-x-0 z-50 pb-safe bg-[#10243D]/95 backdrop-blur-xl shadow-[0_-4px_16px_rgba(16,36,61,0.15)]">
+      <nav className="fixed bottom-0 inset-x-0 z-40 pb-safe bg-[#10243D]/95 backdrop-blur-xl shadow-[0_-4px_16px_rgba(16,36,61,0.15)]">
         <div className="flex justify-around items-center h-20 px-space-xs">
-          <a
+          <Link
             href="/"
             className="flex flex-col items-center justify-center gap-1 w-16 h-14 transition-colors text-tertiary-fixed font-semibold"
           >
             <span className="material-symbols-outlined text-xl">dashboard</span>
             <span className="font-label-sm text-label-sm">Overview</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#services"
             className="flex flex-col items-center justify-center gap-1 w-16 h-14 text-secondary-fixed-dim transition-colors"
           >
             <span className="material-symbols-outlined text-xl">corporate_fare</span>
             <span className="font-label-sm text-label-sm">Services</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/projects"
             className="flex flex-col items-center justify-center gap-1 w-16 h-14 text-secondary-fixed-dim transition-colors"
           >
             <span className="material-symbols-outlined text-xl">pie_chart</span>
             <span className="font-label-sm text-label-sm">Projects</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/insights"
             className="flex flex-col items-center justify-center gap-1 w-16 h-14 text-secondary-fixed-dim transition-colors"
           >
             <span className="material-symbols-outlined text-xl">auto_stories</span>
             <span className="font-label-sm text-label-sm">Insights</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#consultation-form"
             className="flex flex-col items-center justify-center gap-1 w-16 h-14 text-secondary-fixed-dim transition-colors"
           >
             <span className="material-symbols-outlined text-xl">verified_user</span>
             <span className="font-label-sm text-label-sm">Advisory</span>
-          </a>
+          </Link>
         </div>
       </nav>
 
       {/* ── WHATSAPP FAB ── */}
       <a
         aria-label="WhatsApp Client Inquiry"
-        className="fixed bottom-24 right-4 z-40 w-13 h-13 min-w-[48px] min-h-[48px] p-3 rounded-full bg-emerald-700 text-white shadow-[0_8px_20px_rgba(4,120,87,0.4)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-200"
+        className="fixed bottom-20 right-4 z-40 md:bottom-6 w-13 h-13 min-w-[48px] min-h-[48px] p-3 rounded-full bg-emerald-700 text-white shadow-[0_8px_20px_rgba(4,120,87,0.4)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-200"
         href="https://wa.me/"
         rel="noopener noreferrer"
         target="_blank"

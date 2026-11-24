@@ -89,7 +89,7 @@ export default async function AppLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          <main className="flex-1 flex flex-col relative w-full pt-20 pb-28 bg-surface">{children}</main>
+          <main className="flex-1 flex flex-col relative w-full pt-24 pb-20 md:pb-0 bg-surface">{children}</main>
           <Footer />
         </NextIntlClientProvider>
         <OrganizationJsonLd />
