@@ -84,118 +84,111 @@ export default async function InsightDetailPage({ params }: Props) {
     : ''
 
   return (
-    <main className="min-h-screen bg-offwhite">
+    <div className="flex flex-col w-full">
       <ArticleJsonLd
         title={String(doc.title ?? '')}
         description={String(doc.excerpt ?? '')}
         url={`/insights/${slug}`}
         datePublished={doc.publishedAt ? String(doc.publishedAt) : undefined}
-        authorName={
-          author != null && String(author.fullName || '').trim()
-            ? String(author.fullName)
-            : undefined
-        }
+        authorName={author != null && String(author.fullName || '').trim() ? String(author.fullName) : undefined}
       />
-      <section className="bg-navy text-white py-20">
-        <div className="max-w-4xl mx-auto px-6 md:px-12">
-          <nav className="text-sm text-white/60 mb-6 flex gap-2">
-            <Link href="/" className="hover:text-white">Home</Link>
-            <span>/</span>
-            <Link href="/insights" className="hover:text-white">Insights</Link>
-            <span>/</span>
-            <span className="text-gold line-clamp-1">{String(doc.title ?? '')}</span>
-          </nav>
-          <span className="inline-block text-xs font-semibold text-teal bg-teal/20 border border-teal/30 rounded-full px-3 py-1 mb-4 uppercase tracking-wider">
-            {String(doc.type || 'article').replace(/-/g, ' ')}
-          </span>
-          <h1 className="font-playfair text-3xl md:text-5xl font-semibold mb-4 leading-tight">
-            {String(doc.title ?? '')}
-          </h1>
-          <div className="flex items-center gap-4 text-white/60 text-sm">
-            {author != null && (
-              <span className="font-medium" style={{ color: 'rgba(255,255,255,0.85)' }}>
-                {String(author.fullName || '')}
-              </span>
-            )}
-            {publishedAt !== '' && <span>{publishedAt}</span>}
-          </div>
+
+      {/* ── HERO ── */}
+      <section className="w-full bg-[#10243D] text-white px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="flex items-center gap-1 font-label-sm text-label-sm text-white/40 mb-4 text-xs">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+          <Link href="/insights" className="hover:text-white transition-colors">Insights</Link>
+          <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+          <span className="text-[#C5A15B] line-clamp-1">{String(doc.title ?? '')}</span>
+        </div>
+        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/20 text-primary-fixed font-label-sm text-label-sm uppercase tracking-wide mb-3">
+          {String(doc.type || 'article').replace(/-/g, ' ')}
+        </span>
+        <h1 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold leading-tight mb-3">
+          {String(doc.title ?? '')}
+        </h1>
+        <div className="flex items-center gap-space-sm text-white/60 font-body-sm text-body-sm">
+          {author != null && <span className="text-white/85 font-semibold">{String(author.fullName || '')}</span>}
+          {publishedAt !== '' && <span>{publishedAt}</span>}
         </div>
       </section>
 
+      {/* ── FEATURED IMAGE ── */}
       {image != null && image.url != null && (
-        <div className="max-w-4xl mx-auto px-6 md:px-12 -mt-8 mb-0 relative z-10">
-          <div className="relative w-full h-72 rounded-lg overflow-hidden shadow-card-2">
-            <Image
-              src={String(image.url)}
-              alt={String(doc.title ?? '')}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 896px"
-            />
-          </div>
+        <div className="w-full bg-surface-container-high max-h-80 overflow-hidden">
+          <Image
+            src={String(image.url)}
+            alt={String(doc.title ?? '')}
+            width={1200}
+            height={500}
+            className="w-full h-full object-cover"
+            sizes="100vw"
+          />
         </div>
       )}
 
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 grid lg:grid-cols-3 gap-12">
+      {/* ── BODY + SIDEBAR ── */}
+      <section className="w-full bg-surface px-margin-mobile py-space-xl md:px-margin-desktop">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
           <article className="lg:col-span-2">
-            <div className="bg-white rounded-lg border border-[#E2E8F0] p-8 shadow-card-1">
-              <p className="text-slate-700 font-semibold text-lg mb-6 pb-6 border-b border-[#E2E8F0]">
+            <div className="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+              <p className="font-body-lg text-body-lg text-[#10243D] font-semibold mb-space-md pb-space-md border-b border-surface-container">
                 {String(doc.excerpt ?? '')}
               </p>
-              <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
+              <div className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
                 <p>{renderBodyText(doc.body)}</p>
               </div>
             </div>
           </article>
 
-          <aside className="space-y-6">
+          <aside className="flex flex-col gap-space-sm">
             {author != null && (
-              <div className="bg-white rounded-lg border border-[#E2E8F0] p-5 shadow-card-1">
-                <h3 className="font-playfair text-base font-semibold text-navy mb-3">About the Author</h3>
-                <p className="font-semibold text-sm text-navy">{String(author.fullName || '')}</p>
-                <p className="text-sm text-teal mb-2">{String(author.title || '')}</p>
+              <div className="rounded-xl bg-surface-container-lowest shadow-sm p-space-md">
+                <div className="flex items-center gap-1 mb-space-sm">
+                  <span className="material-symbols-outlined text-[16px] text-primary">person</span>
+                  <span className="font-label-sm text-label-sm uppercase tracking-wider text-primary font-semibold">Author</span>
+                </div>
+                <p className="font-headline-sm text-headline-sm text-[#10243D]">{String(author.fullName || '')}</p>
+                <p className="font-body-sm text-body-sm text-primary mb-space-xs">{String(author.title || '')}</p>
                 {author.shortBio != null && (
-                  <p className="text-xs text-slate-500 leading-relaxed">{String(author.shortBio)}</p>
+                  <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{String(author.shortBio)}</p>
                 )}
               </div>
             )}
-            <Link
-              href="/insights"
-              className="block bg-navy text-white text-sm font-semibold text-center py-3 px-5 rounded hover:bg-navy/90 transition-colors"
-            >
-              ← Back to Insights
+            <Link href="/insights"
+              className="flex items-center justify-center gap-2 bg-[#10243D] text-white font-label-md text-label-md py-space-sm px-space-md rounded hover:bg-[#10243D]/90 transition-colors">
+              <span className="material-symbols-outlined text-[16px]">arrow_back</span>
+              Back to Insights
             </Link>
           </aside>
         </div>
       </section>
 
+      {/* ── MORE INSIGHTS ── */}
       {recent.length > 0 && (
-        <section className="bg-white py-16">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
-            <h2 className="font-playfair text-2xl font-semibold text-navy mb-8">More Insights</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {recent.map((ins, i) => {
-                const a = ins.author as Record<string, unknown> | null
-                const img = ins.featuredImage as Record<string, unknown> | null
-                return (
-                  <InsightCard
-                    key={i}
-                    slug={String(ins.slug)}
-                    title={String(ins.title)}
-                    type={String(ins.type)}
-                    excerpt={String(ins.excerpt)}
-                    authorName={a != null ? String(a.fullName || '') : undefined}
-                    publishedAt={ins.publishedAt != null ? String(ins.publishedAt) : undefined}
-                    featuredImageUrl={img != null ? String(img.url || '') : undefined}
-                  />
-                )
-              })}
-            </div>
+        <section className="w-full bg-surface-container-low px-margin-mobile py-space-xl md:px-margin-desktop">
+          <div className="flex items-center gap-1 mb-space-md">
+            <span className="material-symbols-outlined text-[16px] text-primary">article</span>
+            <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">More Insights</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+            {recent.map((ins, i) => {
+              const a = ins.author as Record<string, unknown> | null
+              const img = ins.featuredImage as Record<string, unknown> | null
+              return (
+                <InsightCard key={i}
+                  slug={String(ins.slug)} title={String(ins.title)} type={String(ins.type)} excerpt={String(ins.excerpt)}
+                  authorName={a != null ? String(a.fullName || '') : undefined}
+                  publishedAt={ins.publishedAt != null ? String(ins.publishedAt) : undefined}
+                  featuredImageUrl={img != null ? String(img.url || '') : undefined}
+                />
+              )
+            })}
           </div>
         </section>
       )}
-    </main>
+    </div>
   )
 }
 

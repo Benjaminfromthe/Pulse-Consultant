@@ -2,8 +2,10 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Industries We Serve | Pulse Consultant Ltd',
-  description: 'Strategic advisory across Banking & Financial Services, Energy & Renewables, Agribusiness, Healthcare, and Technology & Telecom.',
+  title: 'Industries We Serve',
+  description:
+    'Strategic advisory across Banking & Financial Services, Energy & Renewables, Agribusiness, Healthcare & Life Sciences, and Technology & Telecom across Africa.',
+  alternates: { canonical: '/industries' },
 }
 
 const industries = [
@@ -11,108 +13,153 @@ const industries = [
     slug: 'banking-financial-services',
     icon: 'account_balance',
     title: 'Banking & Financial Services',
-    description: 'Capital structuring, regulatory advisory, and transaction support for commercial banks, development finance institutions, and capital markets participants across East and Central Africa.',
-    stat: '40+ mandates',
+    description:
+      'Tier-1 balance sheet recapitalisation, prudential compliance, cross-border bank integrations, and capital markets advisory for commercial banks and development finance institutions.',
+    stat: '12 Mandates Advised',
+    tags: ['Commercial Banking', 'DFIs', 'Capital Markets', 'Prudential Compliance'],
   },
   {
     slug: 'energy-renewables',
-    icon: 'bolt',
+    icon: 'solar_power',
     title: 'Energy & Renewables',
-    description: 'Project finance and feasibility advisory for large-scale renewables, hydro, geothermal, and off-grid solutions across the African energy transition.',
-    stat: '20+ projects',
+    description:
+      'Utility-scale solar, hydro IPP financing, transmission infrastructure concession frameworks, and off-grid energy solutions across the African energy transition.',
+    stat: '450MW Financed',
+    tags: ['Solar IPPs', 'Hydro', 'Off-Grid', 'PPAs'],
   },
   {
     slug: 'agribusiness',
     icon: 'agriculture',
     title: 'Agribusiness Value Chains',
-    description: 'End-to-end advisory on value chain development, agri-finance structuring, and market linkages for smallholder to large-scale agribusiness operations.',
-    stat: '15+ mandates',
+    description:
+      'Commercial processing hubs, export logistics syndication, sustainable crop monetisation, and agri-finance structuring from smallholder to large-scale operations.',
+    stat: '$220M Outlay Advised',
+    tags: ['Value Chains', 'Agri-Finance', 'Export Logistics', 'Processing'],
   },
   {
     slug: 'healthcare-life-sciences',
     icon: 'local_hospital',
     title: 'Healthcare & Life Sciences',
-    description: 'Strategic advisory for healthcare infrastructure expansion, pharmaceutical distribution, and health system financing across public and private sectors.',
-    stat: '10+ mandates',
+    description:
+      'Regional hospital network mergers, pharmaceutical supply chain funding, cold-storage REITs, and health system financing across public and private sectors.',
+    stat: 'Pan-Regional Coverage',
+    tags: ['Hospital Networks', 'Pharma', 'Health REITs', 'PPP Structures'],
   },
   {
     slug: 'technology-telecom',
-    icon: 'devices',
+    icon: 'cell_tower',
     title: 'Technology & Telecom (TMT)',
-    description: 'Advisory on digital transformation investments, fintech strategy, and telecom infrastructure transactions for emerging market operators and investors.',
-    stat: '12+ mandates',
+    description:
+      'Fibre consortium debt restructuring, sovereign spectrum acquisitions, data centre developments, and digital infrastructure concession frameworks.',
+    stat: 'Tier-3 Infrastructure',
+    tags: ['Fibre Networks', 'Spectrum', 'Data Centres', 'Digital Infra'],
   },
 ]
 
 export default function IndustriesPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-[#10243D] py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <nav className="flex items-center gap-2 text-xs text-[#b5c8e8] mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span className="material-symbols-outlined text-xs">chevron_right</span>
-            <span className="text-[#C5A15B]">Industries</span>
-          </nav>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Industries We Serve
-          </h1>
-          <p className="text-lg text-[#b5c8e8] max-w-2xl">
-            Deep sector expertise across the most dynamic industries shaping Africa&apos;s economic future.
-          </p>
+    <div className="flex flex-col w-full">
+
+      {/* ── HERO ── */}
+      <section className="w-full bg-[#10243D] text-white px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="flex items-center gap-1 font-label-sm text-label-sm text-white/40 mb-4 text-xs">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+          <span className="text-[#C5A15B]">Industries</span>
         </div>
+        <div className="flex items-center gap-1 mb-3">
+          <span className="material-symbols-outlined text-[16px] text-[#C5A15B]">corporate_fare</span>
+          <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#C5A15B] font-semibold">Deep Domain Focus</span>
+        </div>
+        <h1 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold leading-tight mb-3">
+          Sectors We Empower
+        </h1>
+        <p className="font-body-md text-body-md text-white/70 leading-relaxed max-w-2xl">
+          Five priority industries where our advisory expertise runs deepest —
+          backed by real mandates, verified outcomes, and pan-African market intelligence.
+        </p>
       </section>
 
-      {/* Industry cards */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {industries.map((ind) => (
-              <Link
-                key={ind.slug}
-                href={`/industries/${ind.slug}`}
-                className="group flex flex-col bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-lg hover:border-[#087F75] transition-all"
-              >
-                <div className="w-14 h-14 rounded-xl bg-[#10243D] flex items-center justify-center mb-6 group-hover:bg-[#087F75] transition-colors">
-                  <span className="material-symbols-outlined text-white text-2xl">{ind.icon}</span>
+      {/* ── INDUSTRIES GRID ── */}
+      <section className="w-full bg-surface px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="flex flex-col gap-space-md max-w-4xl mx-auto">
+          {industries.map((ind) => (
+            <div
+              key={ind.slug}
+              className="rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden flex flex-col md:flex-row transition-all hover:shadow-md"
+            >
+              {/* Icon column */}
+              <div className="flex items-center justify-center bg-[#10243D]/5 p-space-lg md:w-24 md:min-h-full shrink-0">
+                <div className="w-12 h-12 rounded bg-[#10243D] flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[26px] text-[#C5A15B]">{ind.icon}</span>
                 </div>
-                <h2 className="text-xl font-bold text-[#10243D] mb-3 group-hover:text-[#087F75] transition-colors">
-                  {ind.title}
-                </h2>
-                <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-6">
-                  {ind.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-[#C5A15B] uppercase tracking-wide">
+              </div>
+
+              {/* Content */}
+              <div className="p-space-md flex flex-col gap-space-xs flex-1">
+                <div className="flex items-start justify-between gap-2 flex-wrap">
+                  <h2 className="font-headline-sm text-headline-sm text-[#10243D] leading-tight">{ind.title}</h2>
+                  <span className="font-label-sm text-label-sm text-primary font-semibold shrink-0 bg-primary/10 px-2 py-0.5 rounded">
                     {ind.stat}
                   </span>
-                  <span className="material-symbols-outlined text-[#087F75] group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </div>
-              </Link>
-            ))}
-          </div>
+
+                <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  {ind.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5 pt-space-2xs">
+                  {ind.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <Link
+                  href={`/industries/${ind.slug}`}
+                  className="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold hover:text-[#10243D] pt-space-2xs transition-colors self-start"
+                >
+                  <span>Explore Sector</span>
+                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#087F75] py-16">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Ready to explore sector-specific solutions?
-          </h2>
-          <p className="text-white/80 mb-8 max-w-xl mx-auto">
-            Connect with our sector specialists for a focused conversation about your industry.
-          </p>
+      {/* ── CTA ── */}
+      <section className="w-full bg-[#10243D] px-margin-mobile py-space-2xl md:px-margin-desktop text-center relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C5A15B] via-[#e8c178] to-transparent" />
+        <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold mb-space-sm">
+          Operating in One of These Sectors?
+        </h2>
+        <p className="font-body-md text-body-md text-white/70 leading-relaxed mb-space-lg max-w-xl mx-auto">
+          Our sector specialists are ready to discuss how we can support your most critical mandate.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-space-sm justify-center">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-white text-[#087F75] font-bold rounded-lg hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center justify-center gap-2 px-space-lg py-space-sm bg-primary-container text-white font-label-lg text-label-lg rounded shadow-md hover:bg-primary transition-all"
           >
-            <span className="material-symbols-outlined text-lg">calendar_month</span>
-            Book a Sector Briefing
+            <span className="material-symbols-outlined text-[18px]">calendar_month</span>
+            Book a Consultation
+          </Link>
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center gap-2 px-space-lg py-space-sm border border-[#C5A15B] text-[#C5A15B] font-label-lg text-label-lg rounded hover:bg-[#C5A15B]/10 transition-all"
+          >
+            <span className="material-symbols-outlined text-[18px]">verified</span>
+            View Our Services
           </Link>
         </div>
       </section>
-    </>
+
+    </div>
   )
 }

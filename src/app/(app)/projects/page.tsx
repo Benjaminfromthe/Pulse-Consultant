@@ -153,31 +153,31 @@ export default async function ProjectsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-offwhite">
+    <div className="flex flex-col w-full">
       {/* Hero section */}
-      <section className="bg-navy text-white py-20">
-        <div className="section-container">
-          <nav className="text-sm text-white/60 mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">Projects</span>
-          </nav>
-          <h1 className="font-playfair text-4xl md:text-5xl font-semibold mb-4">
-            Projects &amp; Portfolio
-          </h1>
-          <p className="text-white/80 text-lg max-w-2xl">
-            Discover how we have helped clients achieve measurable results across industries and
-            advisory disciplines.
-          </p>
+      <section className="w-full bg-[#10243D] text-white px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="flex items-center gap-1 font-label-sm text-label-sm text-white/40 mb-4 text-xs">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+          <span className="text-[#C5A15B]">Projects</span>
         </div>
+        <div className="flex items-center gap-1 mb-3">
+          <span className="material-symbols-outlined text-[16px] text-[#C5A15B]">workspace_premium</span>
+          <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#C5A15B] font-semibold">Proven Track Record</span>
+        </div>
+        <h1 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold leading-tight mb-3">
+          Projects &amp; Portfolio
+        </h1>
+        <p className="font-body-md text-body-md text-white/70 leading-relaxed max-w-2xl">
+          High-stakes African corporate transactions resolved through strategic precision.
+          All case studies published with explicit client authorisation.
+        </p>
       </section>
 
       {/* Filter + Grid */}
       <Suspense
         fallback={
-          <div className="section-container py-24 text-center text-slate-500">
+          <div className="px-margin-mobile py-space-2xl text-center text-on-surface-variant font-body-md text-body-md">
             Loading projects…
           </div>
         }
@@ -188,6 +188,6 @@ export default async function ProjectsPage() {
           services={services}
         />
       </Suspense>
-    </main>
+    </div>
   )
 }

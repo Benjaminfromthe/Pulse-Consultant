@@ -5,6 +5,7 @@ import { getLocale, getMessages } from 'next-intl/server';
 import '../globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd';
 import Analytics from '@/components/analytics/Analytics';
 
@@ -89,8 +90,10 @@ export default async function AppLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          <main className="flex-1 flex flex-col relative w-full pt-24 pb-20 md:pb-0 bg-surface">{children}</main>
+          {/* pt-[90px] = header h-16 (64px) + tagline bar ~26px */}
+          <main className="flex-1 flex flex-col relative w-full pt-[90px] pb-20 md:pb-0 bg-surface">{children}</main>
           <Footer />
+          <WhatsAppButton />
         </NextIntlClientProvider>
         <OrganizationJsonLd />
         <Analytics />

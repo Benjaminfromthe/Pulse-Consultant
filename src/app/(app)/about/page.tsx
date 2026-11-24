@@ -1,217 +1,245 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Button from '@/components/ui/Button'
 
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Learn about Pulse Consultant Ltd — our story, vision, mission, core values, and the methodology that drives measurable results for our clients.',
+    'Pulse Consultant Ltd — our story, vision, mission, core values, and the methodology that drives measurable results across Pan-African markets.',
   alternates: { canonical: '/about' },
 }
 
 const stats = [
-  { value: '10+', label: 'Years of Experience' },
+  { value: '$500M+', label: 'Capital Advised' },
   { value: '50+', label: 'Clients Served' },
-  { value: '9', label: 'Advisory Services' },
-  { value: '5', label: 'Priority Industries' },
+  { value: '9', label: 'Advisory Practices' },
+  { value: '5', label: 'Priority Sectors' },
 ]
 
-const coreValues = [
-  { title: 'Integrity', desc: 'We uphold the highest standards of honesty and transparency in every engagement.' },
-  { title: 'Excellence', desc: 'We pursue exceptional quality and rigour in all our work.' },
-  { title: 'Partnership', desc: 'We build long-term collaborative relationships grounded in trust.' },
-  { title: 'Evidence-Based', desc: 'Every recommendation is grounded in rigorous data and research.' },
-  { title: 'Confidentiality', desc: 'Client information is handled with absolute discretion and security.' },
-  { title: 'Sustainability', desc: 'We embed long-term thinking into every strategy we craft.' },
-  { title: 'Agility', desc: 'We adapt quickly to evolving market conditions and client needs.' },
-  { title: 'Impact', desc: 'We measure our success by the tangible outcomes we create for clients.' },
+const values = [
+  { icon: 'verified_user', title: 'Integrity', desc: 'Uncompromising ethical standards in every client engagement and transaction.' },
+  { icon: 'workspace_premium', title: 'Excellence', desc: 'Delivering outcomes that consistently exceed client expectations.' },
+  { icon: 'handshake', title: 'Partnership', desc: 'Building long-term collaborative relationships grounded in trust.' },
+  { icon: 'analytics', title: 'Evidence-Based', desc: 'Every recommendation grounded in rigorous data analysis and research.' },
+  { icon: 'lock', title: 'Confidentiality', desc: 'Absolute discretion in every client relationship and mandate.' },
+  { icon: 'eco', title: 'Sustainability', desc: 'Embedding long-term thinking into every strategy we craft.' },
+  { icon: 'bolt', title: 'Agility', desc: 'Adapting quickly to evolving market conditions and client needs.' },
+  { icon: 'track_changes', title: 'Impact', desc: 'Measured by the tangible, lasting value created for our clients.' },
 ]
 
-const methodologySteps = [
-  { n: 1, title: 'Discovery', desc: 'Deep-dive assessment of your business context, challenges, and objectives.' },
-  { n: 2, title: 'Analysis', desc: 'Rigorous data analysis, benchmarking, and stakeholder interviews.' },
-  { n: 3, title: 'Strategy', desc: 'Tailored recommendations with clear prioritisation and a delivery roadmap.' },
-  { n: 4, title: 'Execution', desc: 'Hands-on implementation support and continuous performance tracking.' },
+const methodology = [
+  { n: '01', title: 'Discovery', desc: 'Deep-dive assessment of your business context, challenges, and strategic objectives through stakeholder interviews and data gathering.' },
+  { n: '02', title: 'Analysis', desc: 'Rigorous quantitative and qualitative analysis, benchmarking, and financial modelling to surface root causes and opportunities.' },
+  { n: '03', title: 'Strategy', desc: 'Tailored, evidence-based recommendations with clear prioritisation, risk assessment, and an actionable delivery roadmap.' },
+  { n: '04', title: 'Execution', desc: 'Hands-on implementation support, change management, and continuous performance tracking to ensure lasting results.' },
 ]
 
-const competitiveAdvantages = [
-  { title: 'Deep Industry Expertise', desc: 'Sector-specific knowledge across 5 priority industries built over 10+ years.' },
-  { title: 'Evidence-Based Approach', desc: 'Data-driven insights and analysis — not gut-feel recommendations.' },
-  { title: 'Confidentiality First', desc: 'Rigorous data protection and NDA-backed client engagements.' },
-  { title: 'End-to-End Solutions', desc: 'From strategic diagnosis through implementation and performance monitoring.' },
-  { title: 'Local Market Mastery', desc: 'Deep knowledge of African and emerging market dynamics and regulatory environments.' },
-  { title: 'Sustainable Growth Focus', desc: 'Strategies designed for long-term value creation, not short-term fixes.' },
+const advantages = [
+  { icon: 'hub', title: 'Deep Sector Expertise', desc: 'Sector-specific knowledge across 5 priority industries built over a decade of pan-African advisory mandates.' },
+  { icon: 'person_pin', title: 'Senior-Led Engagements', desc: 'Every mandate is led by a senior partner — not delegated to junior staff. You get our best people, always.' },
+  { icon: 'analytics', title: 'Proprietary Frameworks', desc: 'Internally developed analytical models refined across hundreds of transactions and strategic engagements.' },
+  { icon: 'diversity_3', title: 'Integrated Advisory', desc: 'Financial, strategic, transactional, and operational expertise under one roof for seamless end-to-end support.' },
+  { icon: 'public', title: 'Pan-African Intelligence', desc: 'Deep understanding of African market dynamics, regulatory environments, and cross-border structuring nuances.' },
+  { icon: 'verified', title: 'Measurable Outcomes', desc: 'All engagements defined by agreed KPIs and verified result metrics — we are accountable to your outcomes.' },
 ]
 
-export default async function AboutPage() {
+export default function AboutPage() {
   return (
-    <main>
-      {/* Section 1: Hero */}
-      <div className="bg-navy">
-        <div className="section-container py-24">
-          <nav className="flex items-center gap-2 text-sm mb-6">
-            <Link href="/" className="text-white/60 hover:text-white transition-colors">
-              Home
-            </Link>
-            <span className="text-white/40">/</span>
-            <span className="text-gold">About Us</span>
-          </nav>
-          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold text-white mt-6 mb-4">
-            About Pulse Consultant Ltd
-          </h1>
-          <p className="text-white/80 text-lg md:text-xl">
-            Strategic Insights. Financial Solutions. Sustainable Growth.
-          </p>
-        </div>
-      </div>
+    <div className="flex flex-col w-full">
 
-      {/* Section 2: Our Story */}
-      <section className="bg-offwhite">
-        <div className="section-container py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="block uppercase text-teal tracking-widest text-sm font-semibold mb-4">
-                Our Story
-              </span>
-              <h2 className="font-playfair text-3xl text-navy mb-6">
-                Built on Expertise. Driven by Results.
-              </h2>
-              <p className="text-slate-600 leading-relaxed mb-4">
-                Pulse Consultant Ltd was founded on a singular belief: that businesses across Africa and emerging
-                markets deserve access to the same quality of strategic and financial advisory that the world&apos;s
-                leading firms receive. We bridge that gap with rigorous analysis, sector-specific depth, and a
-                genuine commitment to our clients&apos; long-term success.
-              </p>
-              <p className="text-slate-600 leading-relaxed">
-                Over more than a decade, we have built a team of specialists across financial advisory, strategy,
-                risk, and governance — earning the trust of over 50 organisations through measurable, sustainable
-                outcomes. Every engagement is treated as a partnership, not a transaction.
+      {/* ── HERO ── */}
+      <section className="w-full bg-[#10243D] text-white px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="flex items-center gap-1 mb-3">
+          <span className="material-symbols-outlined text-[16px] text-[#C5A15B]">domain</span>
+          <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#C5A15B] font-semibold">Our Firm</span>
+        </div>
+        <div className="flex items-center gap-1 font-label-sm text-label-sm text-white/40 mb-4 text-xs">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+          <span className="text-[#C5A15B]">About Us</span>
+        </div>
+        <h1 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold leading-tight mb-3">
+          Turning Complexity into<br />
+          <span className="italic text-primary-fixed-dim">Measurable Growth</span>
+        </h1>
+        <p className="font-body-md text-body-md text-white/70 leading-relaxed max-w-2xl">
+          Pulse Consultant Ltd is a premier pan-African strategic advisory and financial solutions firm,
+          delivering evidence-based counsel to corporations, sovereigns, and institutional investors
+          navigating complex market environments.
+        </p>
+      </section>
+
+      {/* ── STATS ── */}
+      <section className="w-full bg-surface-container-low px-margin-mobile py-space-xl md:px-margin-desktop">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-space-sm">
+          {stats.map((s) => (
+            <div key={s.label} className="relative p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex flex-col gap-1 overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C5A15B]" />
+              <span className="font-headline-lg-mobile text-headline-lg-mobile text-[#C5A15B] font-bold leading-none">{s.value}</span>
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── OUR STORY ── */}
+      <section className="w-full bg-surface px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-space-xl max-w-6xl mx-auto">
+          <div className="flex flex-col gap-space-md">
+            <div className="flex items-center gap-1">
+              <span className="material-symbols-outlined text-[16px] text-primary">auto_stories</span>
+              <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Our Story</span>
+            </div>
+            <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-[#10243D] font-semibold leading-tight">
+              Built on Expertise.<br />Driven by Results.
+            </h2>
+            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Founded with the conviction that African enterprises deserve world-class strategic advisory,
+              Pulse Consultant Ltd has grown into a trusted partner for institutions seeking rigorous,
+              partner-led counsel on their most consequential decisions.
+            </p>
+            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              From capital structuring and M&A to regulatory navigation and digital transformation,
+              our integrated approach ensures that every recommendation is grounded in evidence,
+              calibrated to the African context, and built to deliver lasting competitive advantage.
+            </p>
+          </div>
+          <div className="relative rounded-xl overflow-hidden bg-surface-container-high min-h-[280px]">
+            <div
+              className="w-full h-full min-h-[280px] bg-cover bg-center"
+              style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBICLOV9EBMriB_n_HJpaXDI25-hky7qpxKvREZ-jXiPyau1XgbZZVd2T7r4n0tRFVF9wZ_OoWJ9mqzK6EbDiiToE03nGfr0awPQ2ArpfoFbG-WNdKxdhmEoSoxzOpBJsebbXBUb_8jqIGDicq-fzf6FM3bOP64n2KPZ-vhs2d2vGbxHMfKsjofH9wFRnXKaAWHX9U4VFI5zkNED92_56SWcu6X6wnpUwrqEF8hTQ')" }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-[#10243D]/60 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VISION & MISSION ── */}
+      <section className="w-full bg-surface-container-low px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="text-center mb-space-xl">
+          <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Our Purpose</span>
+          <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-[#10243D] font-semibold mt-1">Vision &amp; Mission</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md max-w-4xl mx-auto">
+          <div className="relative p-space-lg rounded-xl bg-surface-container-lowest shadow-md overflow-hidden">
+            <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-[#C5A15B]" />
+            <div className="pl-space-sm">
+              <div className="w-10 h-10 rounded bg-[#C5A15B]/10 flex items-center justify-center mb-space-sm">
+                <span className="material-symbols-outlined text-[22px] text-[#C5A15B]">visibility</span>
+              </div>
+              <h3 className="font-headline-sm text-headline-sm text-[#10243D] mb-space-xs">Our Vision</h3>
+              <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                To be Africa&apos;s most trusted strategic advisory partner — the firm that institutions
+                call when the stakes are highest and precision matters most.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat) => (
-                <div key={stat.label} className="bg-white rounded-lg p-6 border-t-4 border-gold shadow-card-1">
-                  <p className="font-playfair text-3xl text-gold font-bold">{stat.value}</p>
-                  <p className="text-sm text-slate-600 mt-1">{stat.label}</p>
+          </div>
+          <div className="relative p-space-lg rounded-xl bg-surface-container-lowest shadow-md overflow-hidden">
+            <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-primary-container" />
+            <div className="pl-space-sm">
+              <div className="w-10 h-10 rounded bg-primary/10 flex items-center justify-center mb-space-sm">
+                <span className="material-symbols-outlined text-[22px] text-primary">flag</span>
+              </div>
+              <h3 className="font-headline-sm text-headline-sm text-[#10243D] mb-space-xs">Our Mission</h3>
+              <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                To deliver expert-driven, evidence-based advisory that solves complex business challenges,
+                unlocks new value, and builds lasting competitive advantage for our clients across Africa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CORE VALUES ── */}
+      <section className="w-full bg-surface px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="text-center mb-space-xl">
+          <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">What We Stand For</span>
+          <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-[#10243D] font-semibold mt-1">Our Core Values</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm max-w-6xl mx-auto">
+          {values.map((v) => (
+            <div key={v.title} className="relative p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C5A15B]" />
+              <div className="w-9 h-9 rounded bg-[#C5A15B]/10 flex items-center justify-center">
+                <span className="material-symbols-outlined text-[20px] text-[#C5A15B]">{v.icon}</span>
+              </div>
+              <h3 className="font-headline-sm text-headline-sm text-[#10243D]">{v.title}</h3>
+              <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{v.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── METHODOLOGY ── */}
+      <section className="w-full bg-[#10243D] text-white px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="text-center mb-space-xl">
+          <span className="font-label-sm text-label-sm uppercase tracking-widest text-[#C5A15B] font-semibold">How We Work</span>
+          <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold mt-1">Our Methodology</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm max-w-6xl mx-auto">
+          {methodology.map((m) => (
+            <div key={m.n} className="relative p-space-md rounded-lg bg-white/5 backdrop-blur-sm flex flex-col gap-space-xs overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary-fixed-dim" />
+              <span className="font-headline-lg-mobile text-headline-lg-mobile text-primary-fixed-dim font-bold leading-none">{m.n}</span>
+              <h3 className="font-headline-sm text-headline-sm text-white">{m.title}</h3>
+              <p className="font-body-sm text-body-sm text-white/60 leading-relaxed">{m.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── COMPETITIVE ADVANTAGES ── */}
+      <section className="w-full bg-surface-container-low px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="text-center mb-space-xl">
+          <span className="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Why Choose Us</span>
+          <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-[#10243D] font-semibold mt-1">Our Competitive Edge</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-sm max-w-6xl mx-auto">
+          {advantages.map((a) => (
+            <div key={a.title} className="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex flex-col gap-space-xs">
+              <div className="flex items-start gap-space-sm">
+                <div className="w-10 h-10 rounded bg-primary/10 flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[20px] text-primary">{a.icon}</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Vision & Mission */}
-      <section className="bg-white">
-        <div className="section-container py-20">
-          <div className="text-center mb-12">
-            <span className="block uppercase text-teal tracking-widest text-sm font-semibold mb-3">
-              Our Foundation
-            </span>
-            <h2 className="font-playfair text-3xl text-navy">Vision &amp; Mission</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-            <div className="pr-8 md:border-r md:border-gold pb-10 md:pb-0">
-              <span className="block uppercase text-gold tracking-wider text-xs font-semibold mb-4">
-                Our Vision
-              </span>
-              <h3 className="font-playfair text-2xl text-navy mb-4">Our Vision</h3>
-              <p className="text-slate-600 leading-relaxed">
-                To be the most trusted financial advisory and strategic consulting firm in Africa and emerging
-                markets, renowned for integrity, expertise, and transformational client outcomes.
-              </p>
-            </div>
-            <div className="md:pl-8 pt-10 md:pt-0">
-              <span className="block uppercase text-gold tracking-wider text-xs font-semibold mb-4">
-                Our Mission
-              </span>
-              <h3 className="font-playfair text-2xl text-navy mb-4">Our Mission</h3>
-              <p className="text-slate-600 leading-relaxed">
-                To deliver evidence-based, results-driven consulting that creates measurable, sustainable value
-                for every client we serve — through deep industry expertise, rigorous analysis, and genuine
-                partnership.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: 8 Core Values */}
-      <section className="bg-offwhite">
-        <div className="section-container py-20">
-          <div className="text-center mb-12">
-            <span className="block uppercase text-teal tracking-widest text-sm font-semibold mb-3">
-              What We Stand For
-            </span>
-            <h2 className="font-playfair text-3xl text-navy">Our Core Values</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {coreValues.map((value) => (
-              <div key={value.title} className="bg-white rounded-lg p-6 border-t-2 border-gold shadow-card-1">
-                <h3 className="font-semibold text-navy mb-2">{value.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: Methodology */}
-      <section className="bg-navy">
-        <div className="section-container py-20">
-          <div className="text-center mb-16">
-            <span className="block uppercase text-gold/80 tracking-widest text-sm font-semibold mb-3">
-              How We Work
-            </span>
-            <h2 className="font-playfair text-3xl text-white">Our Methodology</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
-            {methodologySteps.map((step) => (
-              <div key={step.n} className="flex flex-col items-center text-center px-4">
-                <div className="w-12 h-12 rounded-full bg-teal flex items-center justify-center font-playfair text-white text-xl font-bold mb-4">
-                  {step.n}
+                <div>
+                  <h3 className="font-headline-sm text-headline-sm text-[#10243D] mb-1">{a.title}</h3>
+                  <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{a.desc}</p>
                 </div>
-                <h3 className="font-semibold text-white text-lg mb-2">{step.title}</h3>
-                <p className="text-white/70 text-sm leading-relaxed">{step.desc}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Section 6: Competitive Advantages */}
-      <section className="bg-offwhite">
-        <div className="section-container py-20">
-          <div className="text-center mb-12">
-            <span className="block uppercase text-teal tracking-widest text-sm font-semibold mb-3">
-              Our Edge
-            </span>
-            <h2 className="font-playfair text-3xl text-navy">Why Choose Pulse Consultant</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {competitiveAdvantages.map((advantage) => (
-              <div key={advantage.title} className="bg-white rounded-lg p-6 border-l-4 border-gold shadow-card-1">
-                <h3 className="font-semibold text-navy mb-2">{advantage.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{advantage.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 7: CTA */}
-      <section className="bg-teal">
-        <div className="section-container py-20 text-center">
-          <h2 className="font-playfair text-3xl md:text-4xl text-white mb-4">
-            Partner with Pulse Consultant
+      {/* ── CTA ── */}
+      <section className="w-full bg-[#10243D] px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C5A15B] via-[#e8c178] to-transparent" />
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold mb-space-sm">
+            Ready to Work With Us?
           </h2>
-          <p className="text-white/80 text-lg mb-8">
-            Let us help you turn strategic insights into sustainable growth.
+          <p className="font-body-md text-body-md text-white/70 leading-relaxed mb-space-lg">
+            Engage our senior partners for a confidential consultation on your most critical business challenge.
           </p>
-          <Button variant="secondary" size="lg" href="/#contact">
-            Start a Conversation
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-space-sm justify-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-space-lg py-space-sm bg-primary-container text-white font-label-lg text-label-lg rounded shadow-md hover:bg-primary transition-all"
+            >
+              <span className="material-symbols-outlined text-[18px]">calendar_month</span>
+              Book a Consultation
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center gap-2 px-space-lg py-space-sm border border-[#C5A15B] text-[#C5A15B] font-label-lg text-label-lg rounded hover:bg-[#C5A15B]/10 transition-all"
+            >
+              <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+              View Our Services
+            </Link>
+          </div>
         </div>
       </section>
-    </main>
+
+    </div>
   )
 }

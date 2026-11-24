@@ -1,8 +1,6 @@
 import { getPayloadClient } from '@/lib/payload'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Button from '@/components/ui/Button'
-import RegulatoryDisclaimer from '@/components/layout/RegulatoryDisclaimer'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -118,163 +116,127 @@ export default async function ProjectDetailPage({ params }: Props) {
     typeof results.testimonialAuthor === 'string' ? results.testimonialAuthor : ''
 
   return (
-    <main className="min-h-screen bg-offwhite">
-      {/* 1. Hero */}
-      <section className="bg-navy text-white py-20">
-        <div className="section-container">
-          <nav className="text-sm text-white/60 mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-white transition-colors">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <Link href="/projects" className="hover:text-white transition-colors">
-              Projects
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">{projectTitle}</span>
-          </nav>
-          {sectorName && (
-            <span className="inline-block px-3 py-1 bg-teal/20 text-teal text-xs font-semibold rounded-full uppercase tracking-wide mb-4">
-              {sectorName}
-            </span>
-          )}
-          <h1 className="font-playfair text-4xl md:text-5xl font-semibold mb-4">
-            {projectTitle}
-          </h1>
-          {authorizedClientName && (
-            <p className="text-white/70 text-lg">{authorizedClientName}</p>
-          )}
+    <div className="flex flex-col w-full">
+      {/* ── HERO ── */}
+      <section className="w-full bg-[#10243D] text-white px-margin-mobile py-space-2xl md:px-margin-desktop">
+        <div className="flex items-center gap-1 font-label-sm text-label-sm text-white/40 mb-4 text-xs">
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
+          <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+          <Link href="/projects" className="hover:text-white transition-colors">Projects</Link>
+          <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+          <span className="text-[#C5A15B] truncate">{projectTitle}</span>
         </div>
+        {sectorName && (
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/20 text-primary-fixed font-label-sm text-label-sm uppercase tracking-wide mb-3">
+            {sectorName}
+          </span>
+        )}
+        <h1 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold leading-tight mb-2">{projectTitle}</h1>
+        {authorizedClientName && (
+          <p className="font-body-md text-body-md text-white/60">{authorizedClientName}</p>
+        )}
       </section>
 
-      {/* 2. Challenge + Scope */}
-      <section className="bg-offwhite py-16">
-        <div className="section-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="font-playfair text-2xl font-semibold text-navy mb-4">
-                Business Challenge
-              </h2>
-              <p className="text-slate-600 leading-relaxed">
-                {renderField(engagement.businessChallenge)}
-              </p>
+      {/* ── CHALLENGE + SCOPE ── */}
+      <section className="w-full bg-surface px-margin-mobile py-space-xl md:px-margin-desktop">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-space-lg max-w-4xl mx-auto">
+          <div className="p-space-md rounded-lg bg-surface-container-lowest shadow-sm">
+            <div className="flex items-center gap-1 mb-space-sm">
+              <span className="material-symbols-outlined text-[18px] text-[#C5A15B]">error_outline</span>
+              <h2 className="font-headline-sm text-headline-sm text-[#10243D]">Business Challenge</h2>
             </div>
-            <div>
-              <h2 className="font-playfair text-2xl font-semibold text-navy mb-4">
-                Assignment Scope
-              </h2>
-              <p className="text-slate-600 leading-relaxed">
-                {renderField(engagement.assignmentScope)}
-              </p>
+            <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{renderField(engagement.businessChallenge)}</p>
+          </div>
+          <div className="p-space-md rounded-lg bg-surface-container-lowest shadow-sm">
+            <div className="flex items-center gap-1 mb-space-sm">
+              <span className="material-symbols-outlined text-[18px] text-primary">assignment</span>
+              <h2 className="font-headline-sm text-headline-sm text-[#10243D]">Assignment Scope</h2>
             </div>
+            <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">{renderField(engagement.assignmentScope)}</p>
           </div>
         </div>
       </section>
 
-      {/* 3. Consulting Approach */}
-      <section className="bg-white py-16">
-        <div className="section-container">
-          <div className="border-l-4 border-gold pl-6">
-            <h2 className="font-playfair text-2xl font-semibold text-navy mb-4">
-              Our Approach
-            </h2>
-            <p className="text-slate-600 leading-relaxed">
-              {renderField(engagement.consultingApproach)}
-            </p>
+      {/* ── APPROACH ── */}
+      <section className="w-full bg-surface-container-low px-margin-mobile py-space-xl md:px-margin-desktop">
+        <div className="max-w-4xl mx-auto">
+          <div className="border-l-4 border-[#C5A15B] pl-space-md">
+            <div className="flex items-center gap-1 mb-space-sm">
+              <span className="material-symbols-outlined text-[18px] text-primary">psychology</span>
+              <h2 className="font-headline-sm text-headline-sm text-[#10243D]">Our Approach</h2>
+            </div>
+            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{renderField(engagement.consultingApproach)}</p>
           </div>
         </div>
       </section>
 
-      {/* 4. Deliverables */}
-      <section className="bg-navy text-white py-16">
-        <div className="section-container">
-          <h2 className="font-playfair text-3xl font-semibold mb-8">
-            What We Delivered
-          </h2>
-          {deliverables.length > 0 ? (
-            <ul className="space-y-3">
+      {/* ── DELIVERABLES ── */}
+      {deliverables.length > 0 && (
+        <section className="w-full bg-[#10243D] text-white px-margin-mobile py-space-xl md:px-margin-desktop">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-1 mb-space-md">
+              <span className="material-symbols-outlined text-[18px] text-[#C5A15B]">checklist</span>
+              <h2 className="font-headline-sm text-headline-sm text-white">Deliverables</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
               {deliverables.map((d, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <span className="text-gold font-bold text-lg leading-tight mt-0.5">›</span>
-                  <span className="text-white/85">
-                    {typeof d.deliverable === 'string' ? d.deliverable : ''}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-white/60">[Content available in CMS]</p>
-          )}
-        </div>
-      </section>
-
-      {/* 5. Verified Results */}
-      <section className="bg-offwhite py-16">
-        <div className="section-container">
-          <h2 className="font-playfair text-3xl font-semibold text-navy mb-8">
-            Verified Results
-          </h2>
-          {metrics.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {metrics.map((m, i) => (
-                <div
-                  key={i}
-                  className="bg-white border-t-4 border-gold rounded-lg p-6 shadow-card-1"
-                >
-                  <span className="font-playfair text-3xl text-gold font-semibold block mb-1">
-                    {typeof m.value === 'string' ? m.value : ''}
-                  </span>
-                  <span className="text-navy font-medium text-sm block mb-1">
-                    {typeof m.metric === 'string' ? m.metric : ''}
-                  </span>
-                  {typeof m.context === 'string' && m.context && (
-                    <span className="text-slate-500 text-xs">{m.context}</span>
-                  )}
+                <div key={i} className="flex items-start gap-space-xs">
+                  <span className="material-symbols-outlined text-[16px] text-[#C5A15B] mt-0.5 shrink-0">check_circle</span>
+                  <span className="font-body-sm text-body-sm text-white/80">{typeof d.deliverable === 'string' ? d.deliverable : ''}</span>
                 </div>
               ))}
             </div>
-          )}
-          <p className="text-slate-600 leading-relaxed">
-            {renderField(results.summary)}
-          </p>
-        </div>
-      </section>
-
-      {/* 6. Testimonial (conditional) */}
-      {clientTestimonial && (
-        <section className="bg-white py-16">
-          <div className="section-container">
-            <blockquote className="max-w-3xl mx-auto">
-              <span className="text-gold text-5xl leading-none font-serif block mb-2">&ldquo;</span>
-              <p className="text-slate-700 text-lg italic leading-relaxed mb-4">
-                {clientTestimonial}
-              </p>
-              {testimonialAuthor && (
-                <footer className="text-navy font-semibold text-sm">
-                  &mdash; {testimonialAuthor}
-                </footer>
-              )}
-            </blockquote>
           </div>
         </section>
       )}
 
-      {/* 7. Related Services */}
+      {/* ── RESULTS ── */}
+      <section className="w-full bg-surface px-margin-mobile py-space-xl md:px-margin-desktop">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-1 mb-space-md">
+            <span className="material-symbols-outlined text-[18px] text-[#C5A15B]">verified</span>
+            <h2 className="font-headline-sm text-headline-sm text-[#10243D]">Verified Results</h2>
+          </div>
+          {metrics.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-space-sm mb-space-md">
+              {metrics.map((m, i) => (
+                <div key={i} className="relative p-space-md rounded-lg bg-surface-container-lowest shadow-sm text-center overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C5A15B]" />
+                  <span className="font-headline-lg-mobile text-headline-lg-mobile text-[#C5A15B] font-bold block leading-none">{typeof m.value === 'string' ? m.value : ''}</span>
+                  <span className="font-label-md text-label-md text-[#10243D] font-semibold block mt-1">{typeof m.metric === 'string' ? m.metric : ''}</span>
+                  {typeof m.context === 'string' && m.context && <span className="font-body-sm text-body-sm text-on-surface-variant">{m.context}</span>}
+                </div>
+              ))}
+            </div>
+          )}
+          <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{renderField(results.summary)}</p>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIAL ── */}
+      {clientTestimonial && (
+        <section className="w-full bg-surface-container-low px-margin-mobile py-space-xl md:px-margin-desktop">
+          <div className="max-w-2xl mx-auto text-center">
+            <span className="text-[#C5A15B] text-5xl leading-none font-serif block mb-2">&ldquo;</span>
+            <p className="font-body-lg text-body-lg text-[#10243D] italic leading-relaxed mb-space-md">{clientTestimonial}</p>
+            {testimonialAuthor && <p className="font-label-md text-label-md text-primary font-semibold">— {testimonialAuthor}</p>}
+          </div>
+        </section>
+      )}
+
+      {/* ── RELATED SERVICES ── */}
       {relatedService.length > 0 && (
-        <section className="bg-teal text-white py-16">
-          <div className="section-container">
-            <h2 className="font-playfair text-2xl font-semibold mb-6">Related Services</h2>
-            <div className="flex flex-wrap gap-4">
+        <section className="w-full bg-primary-container px-margin-mobile py-space-lg md:px-margin-desktop">
+          <div className="max-w-4xl mx-auto">
+            <span className="font-label-sm text-label-sm uppercase tracking-widest text-white/70 font-semibold block mb-space-sm">Related Services</span>
+            <div className="flex flex-wrap gap-space-xs">
               {relatedService.map((svc, i) => {
                 const svcSlug = typeof svc.slug === 'string' ? svc.slug : ''
                 const svcTitle = typeof svc.title === 'string' ? svc.title : ''
                 if (!svcSlug || !svcTitle) return null
                 return (
-                  <Link
-                    key={i}
-                    href={`/services/${svcSlug}`}
-                    className="bg-white/10 border border-white/20 rounded px-4 py-2 text-sm hover:bg-white/20 transition-colors"
-                  >
+                  <Link key={i} href={`/services/${svcSlug}`}
+                    className="bg-white/15 border border-white/25 text-white font-label-md text-label-md px-space-sm py-1 rounded hover:bg-white/25 transition-colors">
                     {svcTitle}
                   </Link>
                 )
@@ -284,22 +246,18 @@ export default async function ProjectDetailPage({ params }: Props) {
         </section>
       )}
 
-      {/* 8. CTA */}
-      <section className="bg-navy text-white py-16">
-        <div className="section-container text-center">
-          <h2 className="font-playfair text-3xl md:text-4xl font-semibold mb-4">
-            Ready to Start Your Project?
-          </h2>
-          <p className="text-white/70 text-lg mb-8 max-w-xl mx-auto">
-            Let&apos;s discuss how we can help you achieve similar results for your organization.
-          </p>
-          <Button variant="outline" href="/#contact">
-            Schedule a Consultation
-          </Button>
-        </div>
+      {/* ── CTA ── */}
+      <section className="w-full bg-[#10243D] text-white px-margin-mobile py-space-2xl md:px-margin-desktop text-center">
+        <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-white font-semibold mb-space-sm">Ready for Similar Results?</h2>
+        <p className="font-body-md text-body-md text-white/70 leading-relaxed mb-space-lg max-w-xl mx-auto">
+          Let&apos;s discuss how we can help your organisation achieve measurable outcomes.
+        </p>
+        <Link href="/contact"
+          className="inline-flex items-center justify-center gap-2 px-space-lg py-space-sm bg-primary-container text-white font-label-lg text-label-lg rounded shadow-md hover:bg-primary transition-all">
+          <span className="material-symbols-outlined text-[18px]">calendar_month</span>
+          Schedule a Consultation
+        </Link>
       </section>
-
-      <RegulatoryDisclaimer variant="compact" />
-    </main>
+    </div>
   )
 }
