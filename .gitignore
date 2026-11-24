@@ -42,3 +42,5 @@ next-env.d.ts
 
 # agent workflow scratch files
 .agents/
+
+supabase-ca.crt

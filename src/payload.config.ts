@@ -33,17 +33,9 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
-    // Supabase pooler (port 6543) for runtime serverless queries; falls back to the legacy
-    // DATABASE_URI for local non-Supabase dev. SSL is DSN-driven via ?sslmode=require (Supabase)
-    // or omitted (local) — do NOT set pool.ssl here, it would break no-SSL local dev.
-    // Migrations/seeds use the direct DSN: the user temporarily points DATABASE_URL at DIRECT_URL
-    // (port 5432) when running `npx payload migrate` / `npm run seed` — see verification-commands.md.
     pool: {
       connectionString: process.env.DATABASE_URL || process.env.DATABASE_URI || '',
     },
-    // Opt-in schema sync (drizzle `push`). Default OFF — production should use migrations.
-    // Set PAYLOAD_DB_PUSH=true only to bootstrap/sync the schema when the Payload migration
-    // CLI is unavailable (e.g. Node 24 + tsx/undici incompatibility). See SUPABASE-SETUP.md.
     push: process.env.PAYLOAD_DB_PUSH === 'true',
   }),
   plugins: [s3MediaStorage],
