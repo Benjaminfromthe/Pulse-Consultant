@@ -1,6 +1,7 @@
 'use server'
 
 import { inquirySchema, CONSULTING_SERVICES, SECTORS } from '@/lib/schemas/inquirySchema'
+import { getPayloadClient } from '@/lib/payload'
 
 export type SubmitInquiryState = {
   success: boolean
@@ -56,6 +57,30 @@ export async function submitInquiry(
       message: 'Security check failed. Please try again.',
       errors: { turnstileToken: ['Security verification failed'] },
     }
+  }
+
+  // Persist the inquiry to the database (alongside the email notification below).
+  // Failure here must NOT fail the user-facing submission — the email still sends.
+  try {
+    const payload = await getPayloadClient()
+    await payload.create({
+      collection: 'inquiries',
+      data: {
+        fullName: result.data.fullName,
+        email: result.data.email,
+        phone: result.data.phone,
+        company: result.data.company,
+        service: result.data.service,
+        sector: result.data.sector,
+        message: result.data.message,
+        turnstileVerified: true,
+        status: 'new',
+        source: 'contact-page',
+      },
+      overrideAccess: true,
+    })
+  } catch (err) {
+    console.error('Failed to log inquiry to database:', err)
   }
 
   const apiKey = process.env.RESEND_API_KEY

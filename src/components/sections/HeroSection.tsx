@@ -1,4 +1,5 @@
 import Button from '@/components/ui/Button';
+import { companyProfileUrl } from '@/lib/companyProfileUrl';
 
 export default function HeroSection() {
   return (
@@ -55,7 +56,7 @@ export default function HeroSection() {
           <Button
             variant="outline"
             size="lg"
-            href="/pulse-consultant-company-profile.pdf"
+            href={companyProfileUrl()}
             download="Pulse-Consultant-Company-Profile.pdf"
           >
             Download Company Profile

@@ -1,4 +1,5 @@
 import Button from '@/components/ui/Button';
+import { companyProfileUrl } from '@/lib/companyProfileUrl';
 
 export default function CTABannerSection() {
   return (
@@ -22,7 +23,7 @@ export default function CTABannerSection() {
           <Button
             variant="outline"
             size="lg"
-            href="/pulse-consultant-company-profile.pdf"
+            href={companyProfileUrl()}
             download="Pulse-Consultant-Company-Profile.pdf"
             className="border-white/40 text-white hover:border-gold hover:text-gold"
           >

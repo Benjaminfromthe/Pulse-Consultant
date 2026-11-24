@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/ui/Button';
+import { companyProfileUrl } from '@/lib/companyProfileUrl';
 
 const serviceLinks = [
   'Financial Advisory',
@@ -171,7 +172,7 @@ export default function Footer() {
               <a href="#" className="font-jakarta text-white/60 text-sm hover:text-white transition-colors duration-150">
                 Terms of Service
               </a>
-              <Button variant="outline" size="sm" href="/pulse-consultant-company-profile.pdf" download="Pulse-Consultant-Company-Profile.pdf">
+              <Button variant="outline" size="sm" href={companyProfileUrl()} download="Pulse-Consultant-Company-Profile.pdf">
                 Download Company Profile
               </Button>
             </div>

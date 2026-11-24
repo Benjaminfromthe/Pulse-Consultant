@@ -34,3 +34,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Database & Storage (Supabase)
+
+This project uses Supabase Postgres as the Payload database host and Supabase Storage (S3-compatible) for media. Payload remains the CMS — no Supabase Auth or RLS is used (Path A / hybrid).
+
+1. Create a Supabase project; note the project-ref and region.
+2. In Supabase Dashboard → Storage, create a **public** `media` bucket and a **public** `company-profile` bucket.
+3. Dashboard → Settings → Storage → S3 Connection → generate S3 access keys.
+4. Copy `.env.example` to `.env.local` and fill `DATABASE_URL` (pooler, port 6543), `DIRECT_URL` (direct, port 5432), the `S3_*` vars, `NEXT_PUBLIC_SUPABASE_URL`, and `PAYLOAD_SECRET`.
+5. Apply the schema and seed: see `.agents/tasks/supabase-wiring/verification-commands.md` for the exact PowerShell commands.
+
+See `ADMIN_MANUAL.md` for content-management guidance.
