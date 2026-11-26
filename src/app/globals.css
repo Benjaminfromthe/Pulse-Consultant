@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
@@ -186,6 +186,8 @@
 }
 
 /* ── Composite font utility classes (matching Stitch font-* usage) ── */
+/* Each class is SELF-CONTAINED: sets font-family, size, line-height, weight together.
+   This prevents the split font-family/font-size class pattern that causes icon inheritance bugs. */
 @layer utilities {
   .font-display-lg-mobile {
     font-family: 'Playfair Display', serif;
@@ -201,36 +203,42 @@
     letter-spacing: -0.015em;
     font-weight: 600;
   }
-  .font-headline-sm {
-    font-family: 'Playfair Display', serif;
-  }
+  /* font-headline-sm: Playfair, used as BOTH the font-family class AND sizing class */
+  .font-headline-sm,
   .text-headline-sm {
+    font-family: 'Playfair Display', serif;
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 600;
   }
-  .font-label-lg {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+  /* font-headline-lg-mobile: used both as font class and text class */
+  .font-headline-lg-mobile,
+  .text-headline-lg-mobile {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
   }
+  /* Jakarta Sans utility classes */
+  .font-label-lg,
   .text-label-lg {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.875rem;
     line-height: 1.25rem;
     letter-spacing: 0.02em;
     font-weight: 600;
   }
-  .font-label-md {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+  .font-label-md,
   .text-label-md {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.75rem;
     line-height: 1rem;
     letter-spacing: 0.04em;
     font-weight: 600;
   }
-  .font-body-xl {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+  .font-body-xl,
   .text-body-xl {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.125rem;
     line-height: 1.875rem;
     font-weight: 400;
@@ -242,58 +250,44 @@
     letter-spacing: -0.02em;
     font-weight: 600;
   }
-  .font-headline-lg {
-    font-family: 'Playfair Display', serif;
-  }
+  .font-headline-lg,
   .text-headline-lg {
+    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     line-height: 2.625rem;
     font-weight: 500;
   }
-  .font-body-md {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+  .font-body-md,
   .text-body-md {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.875rem;
     line-height: 1.375rem;
     font-weight: 400;
   }
-  .font-body-sm {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+  .font-body-sm,
   .text-body-sm {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.75rem;
     line-height: 1.125rem;
     font-weight: 400;
   }
-  .font-headline-lg-mobile {
-    font-family: 'Playfair Display', serif;
-  }
-  .text-headline-lg-mobile {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 500;
-  }
-  .font-body-lg {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+  .font-body-lg,
   .text-body-lg {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1rem;
     line-height: 1.625rem;
     font-weight: 400;
   }
-  .font-headline-md {
-    font-family: 'Playfair Display', serif;
-  }
+  .font-headline-md,
   .text-headline-md {
+    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     line-height: 2.125rem;
     font-weight: 500;
   }
-  .font-label-sm {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+  .font-label-sm,
   .text-label-sm {
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.6875rem;
     line-height: 0.875rem;
     letter-spacing: 0.06em;
@@ -310,13 +304,13 @@
 
 /* ── Material Symbols ── */
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal !important;
+  font-style: normal !important;
   font-size: 24px;
   line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
+  letter-spacing: normal !important;
+  text-transform: none !important;
   display: inline-block;
   white-space: nowrap;
   word-wrap: normal;
@@ -324,6 +318,10 @@
   -webkit-font-feature-settings: 'liga';
   font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  /* Prevent icons from ever overflowing containers */
+  overflow: hidden;
+  vertical-align: middle;
+  user-select: none;
 }
 
 /* ── Safe area inset utilities ── */
@@ -392,4 +390,32 @@ body {
 .navy-section {
   background-color: #10243D;
   color: #FFFFFF;
+}
+
+/* ── Icon font protection: reset Material Symbols inside any typography class ── */
+/* Prevents Playfair Display / Plus Jakarta Sans from overriding the icon ligature font */
+.font-headline-sm .material-symbols-outlined,
+.font-headline-lg-mobile .material-symbols-outlined,
+.font-display-lg .material-symbols-outlined,
+.font-display-md .material-symbols-outlined,
+.font-body-md .material-symbols-outlined,
+.font-body-sm .material-symbols-outlined,
+.font-label-sm .material-symbols-outlined,
+.font-label-md .material-symbols-outlined,
+.font-label-lg .material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* Constrain icon sizes — text-[Npx] utility sizes on icons must stay reasonable */
+.material-symbols-outlined.text-\[14px\],
+.material-symbols-outlined.text-\[16px\],
+.material-symbols-outlined.text-\[18px\],
+.material-symbols-outlined.text-\[20px\],
+.material-symbols-outlined.text-\[22px\],
+.material-symbols-outlined.text-\[24px\],
+.material-symbols-outlined.text-\[26px\] {
+  font-size: inherit;
 }

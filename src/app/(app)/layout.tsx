@@ -87,11 +87,27 @@ export default async function AppLayout({
 
   return (
     <html lang={locale} className={`${playfair.variable} ${jakarta.variable}`}>
+      <head>
+        {/* Preload Material Symbols to prevent icon ligature flash on first render */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+        />
+      </head>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
-          {/* pt-[90px] = header h-16 (64px) + tagline bar ~26px */}
-          <main className="flex-1 flex flex-col relative w-full pt-[90px] pb-20 md:pb-0 bg-surface">{children}</main>
+          <main className="flex-1 flex flex-col relative w-full pt-[90px] bg-surface">{children}</main>
           <Footer />
           <WhatsAppButton />
         </NextIntlClientProvider>

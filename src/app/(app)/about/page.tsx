@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 }
 
 const stats = [
-  { value: '$500M+', label: 'Capital Advised' },
-  { value: '50+', label: 'Clients Served' },
+  { value: 'Pan-African', label: 'Advisory Reach' },
   { value: '9', label: 'Advisory Practices' },
   { value: '5', label: 'Priority Sectors' },
+  { value: 'Partner-Led', label: 'Every Engagement' },
 ]
 
 const values = [

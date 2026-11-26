@@ -3,9 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-const LOGO_URL =
-  'https://lh3.googleusercontent.com/aida/ALJJyrBSjpqaVEyfi_krpHNJwokl1hq7NvmyPOnwWu3iTlblIWWwsOhEp7ITUZo_fi8lBWthoahDpkPFew-hDgrgD7m-tnARXULZUTMuulaJiIds9AVUUfuhifpdspXQOjRnYHCnjT9oHDxdGpS_BLVC_kNL_fDh8j4LegNK2t-HSnuYZ98vlp3kj3Wwt7jYQnSaWVZI7W-9S_ZrKi2ay6wx8lNu7-_bOpGXUz2tU1WU_64';
-
 export default function HomePage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -17,45 +14,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col w-full text-on-surface">
 
-      {/* ── SECTION 1: TOP ACTION QUICK BAR ── */}
-      <section className="w-full bg-[#10243D] text-surface-container-lowest px-margin-mobile py-space-sm shadow-md">
-        <div className="flex items-center justify-between gap-space-xs">
-          <div className="flex items-center gap-space-xs min-w-0">
-            <img
-              alt="Pulse Consultant Ltd Logo"
-              className="w-9 h-9 object-contain rounded-sm bg-surface-container-lowest p-1 shadow-sm shrink-0"
-              src={LOGO_URL}
-            />
-            <div className="flex flex-col min-w-0">
-              <span className="font-headline-sm text-headline-sm text-surface-container-lowest leading-none truncate">
-                Pulse Consultant Ltd
-              </span>
-              <span className="font-label-sm text-label-sm text-tertiary-fixed-dim uppercase tracking-wider truncate">
-                Strategic Advisory
-              </span>
-            </div>
-          </div>
-          <div className="flex items-center gap-space-2xs shrink-0">
-            <a
-              className="flex items-center gap-1 px-space-xs py-1.5 bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 text-surface-container-lowest font-label-md text-label-md rounded transition-colors"
-              href="#profile-download"
-              title="Download Profile"
-            >
-              <span className="material-symbols-outlined text-[16px] text-tertiary-fixed-dim">download</span>
-              <span className="hidden sm:inline">Profile</span>
-            </a>
-            <a
-              className="flex items-center gap-1 px-space-sm py-1.5 bg-primary-container text-on-primary font-label-md text-label-md rounded shadow-sm hover:opacity-95 transition-opacity"
-              href="#consultation-form"
-            >
-              <span className="material-symbols-outlined text-[16px]">calendar_month</span>
-              <span>Book</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 2: HERO ── */}
+      {/* ── SECTION 1: HERO ── */}
       <section className="w-full px-margin-mobile pt-space-lg pb-space-xl flex flex-col gap-space-lg bg-surface">
         <div className="flex flex-col gap-space-sm">
           {/* Badge */}
@@ -125,10 +84,10 @@ export default function HomePage() {
               </div>
               <div className="flex flex-col min-w-0">
                 <span className="font-headline-sm text-headline-sm text-tertiary-fixed-dim font-bold leading-tight truncate">
-                  $1.4B+ Deals Advised
+                  Pan-African Strategic Advisory
                 </span>
                 <span className="font-label-sm text-label-sm text-secondary-fixed-dim truncate">
-                  Across 18 Sovereign African Jurisdictions
+                  Partner-Led · Evidence-Based · Results-Driven
                 </span>
               </div>
             </div>
@@ -148,10 +107,10 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-2 gap-space-sm">
           {[
-            { value: '$1.4B+', label: 'Capital Raised & Structured' },
-            { value: '98.4%', label: 'Advisory Client Retention' },
-            { value: '18', label: 'African Jurisdictions' },
-            { value: '250+', label: 'Executed Transactions' },
+            { value: '9', label: 'Advisory Practices' },
+            { value: 'Pan-African', label: 'Mandate Coverage' },
+            { value: '5', label: 'Priority Sectors' },
+            { value: 'Partner-Led', label: 'Every Engagement' },
           ].map((metric) => (
             <div
               key={metric.label}
@@ -391,10 +350,10 @@ export default function HomePage() {
               </p>
               <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5 mt-space-2xs">
                 <span className="font-label-sm text-label-sm text-secondary uppercase font-semibold">
-                  Verified Advisory Outcome
+                  Illustrative Advisory Outcome
                 </span>
                 <span className="font-headline-sm text-headline-sm text-primary font-bold">
-                  $420M Restructured & 34% Lower Financing Cost
+                  Debt Restructuring — Significant Cost Reduction Achieved
                 </span>
               </div>
             </div>
@@ -427,10 +386,10 @@ export default function HomePage() {
               </p>
               <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5 mt-space-2xs">
                 <span className="font-label-sm text-label-sm text-secondary uppercase font-semibold">
-                  Verified Advisory Outcome
+                  Illustrative Advisory Outcome
                 </span>
                 <span className="font-headline-sm text-headline-sm text-primary font-bold">
-                  $180M Tier-1 Capital Injection & Clearance
+                  Cross-Border M&A — Regulatory Clearance &amp; Capital Secured
                 </span>
               </div>
             </div>
@@ -463,10 +422,10 @@ export default function HomePage() {
               </p>
               <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-0.5 mt-space-2xs">
                 <span className="font-label-sm text-label-sm text-secondary uppercase font-semibold">
-                  Verified Advisory Outcome
+                  Illustrative Advisory Outcome
                 </span>
                 <span className="font-headline-sm text-headline-sm text-primary font-bold">
-                  120MW Solar Farm $95M Project Financing
+                  Renewable Energy PPP — Financial Close &amp; PPA Structured
                 </span>
               </div>
             </div>
@@ -743,57 +702,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── BOTTOM NAV (Mobile fixed) ── */}
-      <nav className="fixed bottom-0 inset-x-0 z-40 pb-safe bg-[#10243D]/95 backdrop-blur-xl shadow-[0_-4px_16px_rgba(16,36,61,0.15)]">
-        <div className="flex justify-around items-center h-20 px-space-xs">
-          <Link
-            href="/"
-            className="flex flex-col items-center justify-center gap-1 w-16 h-14 transition-colors text-tertiary-fixed font-semibold"
-          >
-            <span className="material-symbols-outlined text-xl">dashboard</span>
-            <span className="font-label-sm text-label-sm">Overview</span>
-          </Link>
-          <Link
-            href="/#services"
-            className="flex flex-col items-center justify-center gap-1 w-16 h-14 text-secondary-fixed-dim transition-colors"
-          >
-            <span className="material-symbols-outlined text-xl">corporate_fare</span>
-            <span className="font-label-sm text-label-sm">Services</span>
-          </Link>
-          <Link
-            href="/projects"
-            className="flex flex-col items-center justify-center gap-1 w-16 h-14 text-secondary-fixed-dim transition-colors"
-          >
-            <span className="material-symbols-outlined text-xl">pie_chart</span>
-            <span className="font-label-sm text-label-sm">Projects</span>
-          </Link>
-          <Link
-            href="/insights"
-            className="flex flex-col items-center justify-center gap-1 w-16 h-14 text-secondary-fixed-dim transition-colors"
-          >
-            <span className="material-symbols-outlined text-xl">auto_stories</span>
-            <span className="font-label-sm text-label-sm">Insights</span>
-          </Link>
-          <Link
-            href="/#consultation-form"
-            className="flex flex-col items-center justify-center gap-1 w-16 h-14 text-secondary-fixed-dim transition-colors"
-          >
-            <span className="material-symbols-outlined text-xl">verified_user</span>
-            <span className="font-label-sm text-label-sm">Advisory</span>
-          </Link>
-        </div>
-      </nav>
-
-      {/* ── WHATSAPP FAB ── */}
-      <a
-        aria-label="WhatsApp Client Inquiry"
-        className="fixed bottom-20 right-4 z-40 md:bottom-6 w-13 h-13 min-w-[48px] min-h-[48px] p-3 rounded-full bg-emerald-700 text-white shadow-[0_8px_20px_rgba(4,120,87,0.4)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform duration-200"
-        href="https://wa.me/"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <span className="material-symbols-outlined text-[26px]">chat</span>
-      </a>
     </div>
   );
 }

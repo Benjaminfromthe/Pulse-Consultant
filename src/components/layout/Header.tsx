@@ -85,14 +85,10 @@ export default function Header() {
         </div>
 
         {/* Tagline sub-bar */}
-        <div className="bg-[#0d1d32] px-4 md:px-8 py-1.5 flex items-center justify-between">
-          <p className="text-xs text-[#b5c8e8] truncate">
-            Strategic Insights. Financial Solutions. Sustainable Growth.
+        <div className="bg-[#0a1628] px-4 md:px-8 py-1 border-t border-white/5">
+          <p className="text-xs text-[#b5c8e8]/70 text-center tracking-wide">
+            Strategic Insights · Financial Solutions · Sustainable Growth
           </p>
-          <span className="text-xs text-[#C5A15B] font-semibold tracking-wide ml-2 flex items-center gap-1 shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C5A15B] animate-pulse" />
-            Executive Dashboard
-          </span>
         </div>
       </header>
 
